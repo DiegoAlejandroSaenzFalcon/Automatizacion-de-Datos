@@ -1,0 +1,23 @@
+﻿site_name: Automatizacion de Datos: Herramientas
+site_url: https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos./
+site_author: Diego Alejandro Saenz Falcon
+copyright: Copyright &copy; 2024 Diego Alejandro Saenz Falcon
+
+repo_url: https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos.
+repo_name: DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos.
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+    - scheme: slate
+      primary: indigo
+      accent: amber
+
+nav:
+  - Inicio: index.md
+
+plugins:
+  - search
