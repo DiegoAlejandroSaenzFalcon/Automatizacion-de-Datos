@@ -1,13 +1,13 @@
 # data-tools-workshop
 
-**Monorepo profesional de herramientas de datos para automatización, limpieza y conversión.**
+**Herramientas Profesionales de datos para automatización, limpieza y conversión.**
 Código didáctico, testeado, documentado y listo para producción.
 
 ---
 
 ## 🎯 Qué es esto
 
-Un **monorepo profesional** que agrupa tres herramientas de datos reales, listas para vender como servicio y diseñadas para que **cualquiera pueda aprender a construirlas leyendo el código y la documentación**.
+Un **repositorio profesional** que agrupa herramientas de datos reales, listas para vender como servicio y diseñadas para que **cualquiera pueda aprender a construirlas leyendo el código y la documentación**.
 
 | Herramienta | Qué hace | Estado |
 |---|---|---|
