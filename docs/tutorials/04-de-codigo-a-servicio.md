@@ -1,6 +1,6 @@
 # Tutorial 05: De código a servicio vendible
 
-Cómo convertir tus herramientas en un servicio real que puedas vender en Fiverr, Workana o directo.
+Cómo convertir sus herramientas en un servicio real que pueda vender en Fiverr, Workana o de forma directa.
 
 ---
 
@@ -8,15 +8,15 @@ Cómo convertir tus herramientas en un servicio real que puedas vender en Fiverr
 
 | Código | Servicio |
 |---|---|
-| `python -m data_processor archivo.csv` | "Limpio y organizo tus archivos Excel/CSV" |
-| `python -m pdf_to_excel factura.pdf` | "Extraigo tablas de tus PDFs a Excel" |
-| `python -m file_converter datos.csv --a xlsx` | "Convierto tus archivos entre formatos" |
+| `python -m data_processor archivo.csv` | "Limpio y organizo sus archivos Excel/CSV" |
+| `python -m pdf_to_excel factura.pdf` | "Extraigo tablas de sus PDFs a Excel" |
+| `python -m file_converter datos.csv --a xlsx` | "Convierto sus archivos entre formatos" |
 
 **Regla:** El cliente no compra código, compra **resultado**.
 
 ---
 
-## 2. Define tu servicio (plantilla)
+## 2. Defina su servicio (plantilla)
 
 ```markdown
 # Servicio: Limpieza y organización de datos Excel/CSV
@@ -36,7 +36,7 @@ Cómo convertir tus herramientas en un servicio real que puedas vender en Fiverr
 ## Entregables
 - Archivo limpio en formato solicitado (xlsx/csv/json)
 - Resumen de cambios (filas eliminadas, duplicados, etc.)
-- Archivo original intacto (no modifico tu original)
+- Archivo original intacto (no modifico su original)
 
 ## Tiempo de entrega
 - Hasta 5.000 filas: 24h
@@ -51,40 +51,42 @@ Cómo convertir tus herramientas en un servicio real que puedas vender en Fiverr
 | Paquete | Qué incluye | Precio inicio |
 |---|---|---|
 | **Básico** | 1 archivo ≤ 1.000 filas | $10-15 |
-| **Estándar** | Hasta 5.000 filas, formato + normalización | $20-30 |
-| **Premium** | Múltiples archivos, >5.000 filas, resumen ejecutivo | $40-60 |
+| **Estándar** | Hasta 5.000 filas, formato + normalización | $25-35 |
+| **Premium** | Múltiples archivos, >5.000 filas, resumen ejecutivo | $50-80 |
 
-> **Regla:** Empieza barato ($10-15) para conseguir tus primeras 5-10 reseñas de 5 estrellas. Luego sube precios.
+> **Regla:** Empiece barato ($10-15) para conseguir sus primeras 5-10 reseñas de 5 estrellas. Luego suba precios.
 
 ---
 
 ## 4. Perfil en Fiverr / Workana
 
 ### Título del Gig
-> "Limpio, organizo y convierto tus archivos Excel/CSV — rápido y preciso"
+> "Limpio, organizo y convierto sus archivos Excel/CSV — rápido y preciso"
 
 ### Tags (5 máximos)
 `excel`, `data cleaning`, `csv`, `data entry`, `spreadsheet`
 
 ### Descripción (resumen)
-> Limpio tus archivos Excel/CSV: elimino filas vacías, duplicados (aunque tengan mayúsculas/acentos distintos), normalizo espacios y convierto entre formatos. Entrega rápida, revisión incluida.
+> Limpio sus archivos Excel/CSV: elimino filas vacías, duplicados (aunque tengan mayúsculas/acentos distintos), normalizo espacios y convierto entre formatos. Entrega rápida, revisión incluida, comunicación en español.
 
-### FAQ (anticipa dudas)
-> **P: ¿Manejas datos sensibles?**
-> R: No trabajo con DNI, tarjetas, claves sin NDA firmado. Para datos normales (nombres, emails, productos) sin problema.
-
-> **P: ¿Qué pasa si no me gusta el resultado?**
-> R: Incluyo 1 revisión gratis. Si no quedas conforme, devolución parcial.
+### FAQ (anticipe dudas)
+| Pregunta | Respuesta |
+|---|---|
+| ¿Maneja datos sensibles? | No trabajo con DNI, tarjetas, claves sin NDA firmado. Para datos normales (nombres, emails, productos) sin problema. |
+| ¿Qué pasa si no me gusta el resultado? | Incluyo 1 revisión gratis. Si no queda conforme, devolución parcial. |
+| ¿Cuánto tarda? | 24-48h estándar. Urgente 12h (+50%). |
+| ¿Formato de entrega? | xlsx, csv, json. El que necesite. |
+| ¿Maneja archivos grandes? | Hasta 100K filas estándar. Más grande: cotizamos. |
 
 ---
 
 ## 5. Flujo de trabajo con cliente
 
 ```
-1. Cliente contacta → 2. Pides archivo muestra → 3. Envías preview gratis
-   ↓
-4. Cliente aprueba → 5. Procesas completo → 6. Entregas + resumen
-   ↓
+1. Cliente contacta → 2. Pide archivo muestra → 3. Envía vista previa gratis
+       ↓
+4. Cliente aprueba → 5. Procesa completo → 6. Entregas + resumen
+       ↓
 7. Cliente revisa → 8. Revisión (si pide) → 9. Cierre + reseña
 ```
 
@@ -92,22 +94,22 @@ Cómo convertir tus herramientas en un servicio real que puedas vender en Fiverr
 
 ## 6. Checklist antes de entregar
 
-- [ ] Preview enviado y aprobado
+- [ ] Vista previa enviada y aprobada
 - [ ] Archivo procesado completo
-- [ ] Resumen de cambios (filas eliminadas, duplicados, etc.)
+- [ ] Resumen de cambios incluido
 - [ ] Archivo en formato solicitado (xlsx/csv/json)
 - [ ] Sin datos sensibles expuestos
-- [ ] Archivo original intacto (no modificaste el original del cliente)
+- [ ] Archivo original intacto (no modificó el del cliente)
 
 ---
 
 ## 5. Escalamiento
 
-| Fase | Qué haces | Ingreso objetivo |
+| Fase | Qué hace | Ingreso objetivo |
 |---|---|---|
-| **0-3 meses** | 5-10 clientes, reseñas 5★, portfolio | $100-300/mes |
+| **0-3 meses** | 5-10 clientes, reseñas 5★, portafolio | $100-300/mes |
 | **3-6 meses** | Subir precios, paquetes premium, automatizar más | $500-1000/mes |
-| **6-12 meses** | Especializarte (ej. solo e-commerce, solo contabilidad), subir precios | $1500-3000/mes |
+| **6-12 meses** | Especializarse (ej. solo e-commerce, solo contabilidad), subir precios | $1500-3000/mes |
 | **12+ meses** | Contratar junior, crear agencia, producto propio | $5000+/mes |
 
 ---
@@ -116,33 +118,33 @@ Cómo convertir tus herramientas en un servicio real que puedas vender en Fiverr
 
 | Error | Consecuencia | Solución |
 |---|---|---|
-| Prometer lo que no sabes hacer | Cliente enojado, mala reseña | Di "no sé hacerlo aún, pero aprendo en X días" |
-| No pedir archivo muestra | Pierdes tiempo en archivo incompatible | Siempre pide muestra ANTES de aceptar |
-| No definir alcance | Scope creep (piden más sin pagar) | Define alcance por escrito en el chat |
-| No dar preview | Cliente no confía | Siempre envía preview gratis (5-10 filas) |
-| No responder rápido | Cliente se va a otro | Responde en <2h en horario laboral |
+| Prometer lo que no sabe hacer | Cliente enojado, mala reseña | Diga "no sé hacerlo aún, pero aprendo en X días" |
+| No pedir archivo muestra | Pierde tiempo en archivo incompatible | Siempre pida muestra ANTES de aceptar |
+| No definir alcance | Scope creep (piden más sin pagar) | Defina alcance por escrito en el chat |
+| No dar vista previa | Cliente no confía | Siempre envíe vista previa gratis (5-10 filas) |
+| No responder rápido | Cliente se va a otro | Responda en <2h en horario laboral |
 
 ---
 
-## 7. Tu primer cliente real
+## 7. Su primer cliente real
 
-1. **Crea el Gig en Fiverr** con los textos de arriba
-2. **Postúlate en Workana** a 3-5 proyectos de "limpieza Excel/CSV" esta semana
+1. **Cree el Gig en Fiverr** con los textos de arriba
+2. **Postúlese en Workana** a 3-5 proyectos de "limpieza Excel/CSV" esta semana
 4. **Cuando llegue el primer mensaje** → pégalo aquí y lo analizamos juntos
-5. **Entrega** → pide reseña → repite
+5. **Entregue** → pida reseña → repita
 
 ---
 
-## 8. Tu hoja de ruta (próximos 30 días)
+## 8. Su hoja de ruta (próximos 30 días)
 
 | Día | Acción |
 |---|---|
-| 1-3 | Publica Gig en Fiverr + 5 postulaciones Workana |
-| 4-7 | Primeras respuestas → envía previews gratis |
-| 8-14 | Primer cliente → entrega impecable → pide reseña |
-| 15-21 | 2-3 clientes → sube precio $5 |
-| 22-30 | 5+ reseñas 5★ → sube precio a estándar ($20-30) |
+| 1-3 | Publique Gig en Fiverr + 5 postulaciones Workana |
+| 4-7 | Primeras respuestas → envíe vistas previas gratis |
+| 8-14 | Primer cliente → entrega impecable → pida reseña |
+| 15-21 | 2-3 clientes → suba precio $5 |
+| 22-30 | 5+ reseñas 5★ → suba precio a estándar ($20-30) |
 
 ---
 
-> **Recuerda:** El código ya está. Ahora falta la parte de negocio. Empieza hoy.
+> **Recuerde:** El código ya está. Ahora falta la parte de negocio. Empiece hoy.

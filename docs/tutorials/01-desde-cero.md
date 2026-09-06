@@ -1,15 +1,15 @@
-# Tutorial 01: Desde cero
+# Tutorial 01: Primeros pasos
 
-Este tutorial te guía desde **nada** hasta tener tu entorno funcionando, entender la arquitectura y hacer tu primer commit.
+Este tutorial le guía desde **nada** hasta tener su entorno funcionando, entender la arquitectura y realizar su primer confirmación.
 
 ---
 
 ## Objetivo
 
-Al final tendrás:
+Al final tendrá:
 - Entorno de desarrollo funcionando (`make check` pasa)
-- Entendimiento de la arquitectura del monorepo
-- Tu primer commit con mensaje convencional
+- Entendimiento de la arquitectura del monorepositorio
+- Su primer confirmación con mensaje convencional
 - Conocimiento de cómo ejecutar tests, lint y docs
 
 ---
@@ -23,7 +23,7 @@ Al final tendrás:
 | GitHub CLI (`gh`) | 2.0+ | `gh --version` (opcional) |
 | Make | 4.0+ | `make --version` |
 
-> **Windows:** Usa [Scoop](https://scoop.sh/) o [Chocolatey](https://chocolatey.org/) para instalar `make`, `git`, `gh`.
+> **Windows:** Use [Scoop](https://scoop.sh/) o [Chocolatey](https://chocolatey.org/) para instalar `make`, `git`, `gh`.
 
 ```bash
 scoop install python git gh make
@@ -33,16 +33,16 @@ choco install python git gh make
 
 ---
 
-## 2. Clona el repositorio
+## 2. Clone el repositorio
 
 ```bash
-git clone https://github.com/DiegoAlejandroSaenzFalcon/data-tools-workshop.git
-cd data-tools-workshop
+git clone https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos.git
+cd Automatizacion-de-Datos
 ```
 
 ---
 
-## 3. Instala el entorno de desarrollo
+## 3. Instale el entorno de desarrollo
 
 ```bash
 make install-dev
@@ -53,21 +53,21 @@ make install-dev
 | Paso | Qué hace |
 |---|---|
 | `python -m venv .venv` | Crea entorno virtual aislado |
-| `pip install -e .[dev,...]` | Instala el monorepo en modo editable con todas las dependencias de desarrollo |
-| `pre-commit install` | Instala hooks de git (se ejecutan antes de cada commit) |
-| `pre-commit install --hook-type commit-msg` | Valida mensajes de commit convencionales |
+| `pip install -e .[dev,...]` | Instala el monorepositorio en modo editable con todas las dependencias de desarrollo |
+| `pre-commit install` | Instala hooks de git (se ejecutan antes de cada confirmación) |
+| `pre-commit install --hook-type commit-msg` | Valida mensajes de confirmación convencionales |
 
-> **Nota:** Si ves errores de permisos en Windows, ejecuta PowerShell como administrador o usa `python -m pip install --user ...`.
+> **Nota:** Si ve errores de permisos en Windows, ejecute PowerShell como administrador o use `python -m pip install --user ...`.
 
 ---
 
-## 4. Verifica la instalación
+## 4. Verifique la instalación
 
 ```bash
 make check
 ```
 
-Deberías ver:
+Debería ver:
 
 ```
 ruff check --fix .
@@ -79,19 +79,19 @@ pytest --cov=tools --cov-report=term-missing --cov-report=xml
 ```
 
 Si algo falla:
-1. Lee el error completo
+1. Lea el error completo
 2. Corrección sugerida: `make lint` (auto-fix), `make format`, `make type-check`
-3. Si persiste, abre un issue
+3. Si persiste, abra un issue
 
 ---
 
-## 5. Explora la estructura
+## 5. Explore la estructura
 
 ```bash
 tree -L 3 -I "__pycache__|.venv|.git|htmlcov|.mypy_cache|.ruff_cache|build|dist"
 ```
 
-Deberías ver:
+Debería ver:
 
 ```
 .
@@ -111,11 +111,11 @@ Deberías ver:
 
 ---
 
-## 6. Prueba cada herramienta
+## 6. Pruebe cada herramienta
 
 ```bash
 # data-processor: limpia CSV/Excel
-python -m data_processor examples/ejemplo_datos.csv --preview
+python -m data_processor examples/ejemplo_datos.csv --vista-previa
 python -m data_processor examples/ejemplo_datos.xlsx --salida json
 
 # pdf-to-excel: extrae tablas de PDF
@@ -128,7 +128,7 @@ python -m file_converter examples/datos.xlsx --a json
 
 ---
 
-## 6. Ejecuta tests
+## 7. Ejecute tests
 
 ```bash
 # Todos los tests con coverage
@@ -146,7 +146,7 @@ make test-shared
 
 ---
 
-## 6. Documentación local
+## 7. Documentación local
 
 ```bash
 make docs-serve
@@ -155,29 +155,29 @@ make docs-serve
 
 ---
 
-## 7. Tu primer commit
+## 8. Su primer confirmación
 
 ```bash
-# 1. Crea una rama para tu cambio
+# 1. Cree una rama para su cambio
 git checkout main
 git pull
 git checkout -b feat/mi-primer-cambio
 
-# 2. Haz un cambio pequeño (ej: corrige typo en README)
-# Edita README.md
+# 2. Haga un cambio pequeño (ej: corrige typo en README)
+# Edite README.md
 
-# 3. Stage y commit (commitizen te guiará)
+# 3. Stage y confirmación (commitizen le guiará)
 git add .
 git commit
-# Selecciona: docs(readme): corrige typo en instalación
-# Escribe: Corrige typo en instrucciones de instalación
+# Seleccione: docs(readme): corrige typo en instalación
+# Escriba: Corrige typo en instrucciones de instalación
 
 # 4. Push y PR
 git push origin feat/mi-primer-cambio
-# Abre PR en GitHub
+# Abra PR en GitHub
 ```
 
-### Mensajes de commit convencionales
+### Mensajes de confirmación convencionales
 
 ```
 tipo(scope): descripción breve
@@ -200,7 +200,7 @@ make docs-serve
 # Abre http://localhost:8000
 ```
 
-Navega por:
+Navegue por:
 - **Tutoriales** → `01-desde-cero` (este tutorial)
 - **Herramientas** → referencia de cada herramienta
 - **Tutoriales** → paso a paso de cada herramienta
@@ -209,12 +209,12 @@ Navega por:
 
 ## 9. Siguientes pasos
 
-1. Lee `docs/tutorials/02-procesador-datos.md` — construye data-processor desde cero
-2. Lee `docs/tutorials/03-pdf-a-excel.md` — construye pdf-to-excel
-3. Lee `docs/tutorials/04-convertidor-archivos.md` — construye file-converter
-4. Lee `docs/tutorials/04-de-codigo-a-servicio.md` — de código a servicio vendible
-5. Explora `docs/tools/` para referencia técnica de cada herramienta
-6. Lee `docs/business/` para pricing, finding-clients, delivery
+1. **Lea** `docs/tutorials/02-procesador-datos.md` — construye data-processor desde cero
+2. **Lea** `docs/tutorials/03-pdf-a-excel.md` — construye pdf-to-excel
+3. **Lea** `docs/tutorials/04-convertidor-archivos.md` — construye file-converter
+4. **Lea** `docs/tutorials/04-de-codigo-a-servicio.md` — de código a servicio vendible
+5. Explore `docs/tools/` para referencia técnica de cada herramienta
+6. Lea `docs/business/` para precios, búsqueda-clientes, entrega
 
 ---
 
@@ -222,24 +222,24 @@ Navega por:
 
 | Problema | Solución |
 |---|---|
-| `make: command not found` | Instala `make` (scoop/choco/apt/brew) |
-| `python: command not found` | Instala Python 3.10+ y añade al PATH |
+| `make: command not found` | Instale `make` (scoop/choco/apt/brew) |
+| `python: command not found` | Instale Python 3.10+ y añada al PATH |
 | `pre-commit: command not found` | `pip install pre-commit && pre-commit install` |
-| `mypy: error: ...` | Ejecuta `make type-check` para ver detalles |
-| `ruff: error: ...` | Ejecuta `make lint` (auto-fix) |
-| `pytest: no tests found` | Verifica que estés en la raíz del repo |
+| `mypy: error: ...` | Ejecute `make type-check` para ver detalles |
+| `ruff: error: ...` | Ejecute `make lint` (auto-fix) |
+| `pytest: no tests found` | Verifique que esté en la raíz del repositorio |
 
 ---
 
-## 9. Siguientes pasos recomendados
+## 10. Siguientes pasos recomendados
 
-1. **Lee** `docs/tutorials/02-procesador-datos.md` — construye data-processor desde cero
-2. **Lee** `docs/tutorials/03-pdf-a-excel.md` — construye pdf-to-excel
-3. **Lee** `docs/tutorials/04-convertidor-archivos.md` — construye file-converter
-4. **Lee** `docs/tutorials/04-de-codigo-a-servicio.md` — de código a servicio vendible
-4. Explora `docs/tools/` para referencia técnica
-5. Lee `docs/business/` para pricing, finding-clients, delivery
+1. **Lea** `docs/tutorials/02-procesador-datos.md` — construye data-processor desde cero
+2. **Lea** `docs/tutorials/03-pdf-a-excel.md` — construye pdf-to-excel
+3. **Lea** `docs/tutorials/04-convertidor-archivos.md` — construye file-converter
+4. **Lea** `docs/tutorials/04-de-codigo-a-servicio.md` — de código a servicio vendible
+5. Explore `docs/tools/` para referencia técnica de cada herramienta
+6. Lea `docs/business/` para precios, búsqueda-clientes, entrega
 
 ---
 
-¿Dudas? Abre un [issue](https://github.com/DiegoAlejandroSaenzFalcon/data-tools-workshop/issues) o escribe a `diegoalejandrosaenzfalcon@gmail.com`.
+¿Dudas? Abra un [issue](https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos/issues) o escriba a `diegoalejandrosaenzfalcon@gmail.com`.

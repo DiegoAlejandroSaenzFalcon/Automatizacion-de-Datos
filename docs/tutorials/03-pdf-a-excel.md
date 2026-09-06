@@ -9,9 +9,9 @@ Herramienta CLI que extrae tablas de un PDF y las guarda en Excel (.xlsx) o CSV.
 Crear una herramienta que:
 1. Abre un PDF con `pdfplumber`
 2. Extrae **todas las tablas** de **todas las páginas**
-3. Limpia filas vacías
-4. Guarda cada tabla como hoja separada en Excel (.xlsx) o como CSV
-5. CLI simple + preview opcional
+13. Limpia filas vacías
+14. Guarda cada tabla como hoja separada en Excel (.xlsx) o como CSV
+15. CLI simple + vista previa opcional
 
 ---
 
@@ -165,7 +165,6 @@ def guardar_excel(tablas: List[list], ruta_salida: str):
         ws = wb.create_sheet(title=f"Tabla_{i}")
         for fila in tabla:
             ws.append(fila)
-
     wb.save(ruta_salida)
 
 
@@ -202,7 +201,7 @@ def main():
     args = parser.parse_args()
 
     if not os.path.isfile(args.archivo):
-        print(f"Error: no existe '{args.archivo}'")
+        print(f"Error: no se encontro '{args.archivo}'")
         sys.exit(1)
 
     paginas = None

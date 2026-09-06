@@ -1,6 +1,6 @@
 # Tutorial 02: Construir data-processor desde cero
 
-Este tutorial te guía paso a paso para construir **data-processor v2.0** desde cero, entendiendo cada decisión de diseño.
+Este tutorial le guía paso a paso para construir **data-processor v2.0** desde cero, entendiendo cada decisión de diseño.
 
 ---
 
@@ -10,7 +10,7 @@ Construir una herramienta CLI que:
 1. Lee CSV/Excel con auto-detección de encoding
 2. Limpia: filas vacías, duplicados (insensible a mayúsculas/acentos), espacios
 3. Exporta a XLSX (números reales), CSV (punto y coma), JSON
-4. Tiene menú interactivo y modo preview
+4. Tiene menú interactivo y modo vista previa
 
 ---
 
@@ -23,17 +23,17 @@ tools/data-processor/
 │   ├── __init__.py
 │   ├── cli.py
 │   ├── core.py
-│   ├── io.py
-│   └── utils.py
-├── tests/
-│   ├── test_core.py
-│   ├── test_io.py
-│   └── test_cli.py
-├── examples/
-│   └── ejemplo.csv
-├── README.md
-└── pyproject.toml
-```
+24: │   ├── io.py
+25: │   └── utils.py
+25: ├── tests/
+26: │   ├── test_core.py
+27: │   ├── test_io.py
+28: │   └── test_cli.py
+29: ├── examples/
+30: │   └── ejemplo.csv
+31: ├── README.md
+32: └── pyproject.toml
+33: ```
 
 ---
 
@@ -75,7 +75,7 @@ packages = ["src/data_processor"]
 
 ---
 
-## 2. `src/data_processor/__init__.py`
+## 3. `src/data_processor/__init__.py`
 
 ```python
 """data-processor v2.0 — Limpieza y conversión de datos CSV/Excel.
@@ -84,11 +84,11 @@ Herramienta CLI didáctica para limpiar archivos CSV/Excel:
 - Auto-detección de encoding (utf-8, latin-1, cp1252)
 - Deduplicación insensible a mayúsculas/acentos
 - Procesa múltiples hojas de Excel
-- Preview antes de guardar
+- Vista previa antes de guardar
 - Exporta a xlsx (números reales), csv (;), json
 
 Uso:
-    python -m data_processor archivo.csv --preview
+    python -m data_processor archivo.csv --vista-previa
     python -m data_processor datos.xlsx --salida json
 """
 
@@ -221,6 +221,7 @@ def leer_excel(ruta_archivo: str, hoja: str | None = None):
             raise ValueError(f"Hoja '{hoja}' no existe")
         hoja_obj = openpyxl.load_workbook(ruta_archivo, read_only=True, data_only=True)[hoja]
         filas = [[c if c is not None else "" for c in fila] for fila in hoja_obj.iter_rows(values_only=True)]
+        libro.close()
         return filas
 
     resultado = {}
@@ -234,6 +235,7 @@ def leer_excel(ruta_archivo: str, hoja: str | None = None):
 def leer_archivo(ruta_archivo: str, hoja: str | None = None):
     """Detecta tipo y llama al lector correspondiente."""
     ext = os.path.splitext(ruta_archivo)[1].lower()
+
     if ext == ".csv":
         return leer_csv(ruta_archivo)
     if ext in (".xlsx", ".xlsm"):
@@ -262,38 +264,50 @@ def guardar_filas(ruta_salida: str, filas: list):
     ext = os.path.splitext(ruta_salida)[1].lower()
 
     # Convierte strings numéricos a números reales para Excel/JSON
-    filas_conv = [[int(v) if isinstance(v, str) and v.isdigit()
-                   else float(str(v).replace(",", ".")) if isinstance(v, str) and v.replace(",", ".").replace(".", "", 1).isdigit()
-                   else v for v in fila] for fila in filas]
+    def convertir(valor):
+        if not isinstance(valor, str):
+            return valor
+        texto = valor.strip()
+        if texto.isdigit():
+            return int(texto)
+        try:
+            return float(texto.replace(",", "."))
+        except ValueError:
+            return valor
 
-    ext = os.path.splitext(ruta_salida)[1].lower()
+    filas_convertidas = [[convertir(celda) for celda in fila] for fila in filas]
+
     if ext == ".xlsx":
         import openpyxl
-        wb = openpyxl.Workbook()
-        ws = wb.active
-        for fila in filas:
-            ws.append(fila)
-        import openpyxl
-        wb.save(ruta_salida)
-        return
+        salida = f"{os.path.splitext(ruta_salida)[0]}_limpio.xlsx"
+        libro = openpyxl.Workbook()
+        hoja = libro.active
+        for fila in filas_convertidas:
+            hoja.append(fila)
+        libro.save(salida)
+        return salida
 
     if ext == ".csv":
         import csv
-        with open(ruta_salida, "w", newline="", encoding="utf-8-sig") as f:
+        salida = f"{os.path.splitext(ruta_salida)[0]}_limpio.csv"
+        with open(salida, "w", newline="", encoding="utf-8-sig") as f:
             csv.writer(f, delimiter=";").writerows(filas)
-        return
+        return salida
 
     if ext == ".json":
         import json
+        salida = f"{os.path.splitext(ruta_salida)[0]}_limpio.json"
         if not filas:
-            with open(ruta_salida, "w", encoding="utf-8") as f:
+            with open(salida, "w", encoding="utf-8") as f:
                 json.dump([], f)
             return
         cabeceras = filas[0]
-        regs = [{c: fila[i] if i < len(fila) else "" for i, c in enumerate(cabeceras)} for fila in filas[1:]]
-        with open(ruta_salida, "w", encoding="utf-8") as f:
-            json.dump(regs, f, ensure_ascii=False, indent=2)
-        return
+        registros = []
+        for fila in filas[1:]:
+            registros.append({cabeceras[i]: fila[i] if i < len(fila) else "" for i in range(len(cabeceras))})
+        with open(salida, "w", encoding="utf-8") as f:
+            json.dump(registros, f, ensure_ascii=False, indent=2)
+        return salida
 
     raise ValueError(f"Formato no soportado: {ext}")
 ```
@@ -356,20 +370,20 @@ def limpiar_filas(filas: list) -> list:
     return filas
 
 
-def calcular_preview(filas_originales: list, filas_limpias: list) -> list:
-    """Genera líneas de preview comparando original vs limpio."""
+def calcular_vista_previa(filas_originales: list, filas_limpias: list) -> list:
+    """Genera líneas de vista previa comparando original vs limpio."""
     vacias = sum(1 for f in filas_originales if not any(str(c).strip() for c in f))
-    total_orig = len(filas_originales)
+    total_orig = len(filas)
     total_limp = len(filas_limpias)
 
-    datos_orig = max(0, len(filas) - 1 - sum(1 for f in filas if not any(str(c).strip() for c in f)))
-    datos_final = max(0, len(filas_limpias) - 1)
+    datos_orig = max(0, total_orig - 1 - sum(1 for f in filas if not any(str(c).strip() for c in f)))
+    datos_final = max(0, len(filas) - 1)
     duplicados = max(0, datos_orig - (len(filas_limpias) - 1))
 
     return [
-        f"Filas totales en el original: {len(filas)}",
-        f"Filas vacias encontradas: {sum(1 for f in filas if not any(str(c).strip() for c in f))}",
-        f"Duplicados eliminados: {duplicados}",
+        f"Filas totales en el original: {total_orig}",
+        f"Filas vacías encontradas: {sum(1 for f in filas if not any(str(c).strip() for c in f))}",
+        f"Duplicados eliminados: {max(0, (len(filas) - 1 - sum(1 for f in filas if not any(str(c).strip() for c in f))) - (len(filas_limpias) - 1))}",
         f"Filas finales (con cabecera): {len(filas_limpias)}",
         f"Filas de datos finales: {len(filas_limpias) - 1}",
     ]
@@ -387,7 +401,7 @@ import os
 import sys
 import re
 from .io import leer_archivo
-from .core import limpiar_filas, calcular_preview, mostrar_resumen
+from .core import limpiar_filas, calcular_vista_previa, mostrar_resumen
 from .io import guardar_filas
 
 
@@ -408,61 +422,71 @@ def menu_interactivo():
     print("Exporta: xlsx (números reales), csv (;), json")
     print("")
 
-    # 1. Ruta
+    # 1. Pide la ruta
     while True:
-        ruta = input("Ruta del archivo (arrastra aquí): ").strip().strip('"').strip("'")
+        ruta = input("Ruta del archivo (arrastre aquí): ").strip().strip('"').strip("'")
         if os.path.isfile(ruta):
             break
         print(f"  No existe: {ruta}")
 
-    # 2. Hoja (si Excel multi-hoja)
+    # 2. Pregunta si es Excel y tiene varias hojas
+    extension = os.path.splitext(ruta)[1].lower()
     hoja = None
-    ext = os.path.splitext(ruta)[1].lower()
-    if ext in (".xlsx", ".xlsm"):
+    if extension in (".xlsx", ".xlsm"):
         import openpyxl
-        hojas = openpyxl.load_workbook(ruta, read_only=True).sheetnames
+        libro = openpyxl.load_workbook(ruta, read_only=True)
+        hojas = libro.sheetnames
+        libro.close()
         if len(hojas) > 1:
-            print(f"\nHojas: {', '.join(hojas)}")
-            print("Enter = todas, o escribe nombre de una:")
-            h = input("Hoja: ").strip()
-            if h:
-                if h not in openpyxl.load_workbook(ruta).sheetnames:
-                    print(f"Hoja '{hoja}' no existe")
-                    return
-                hoja = h
+            print("")
+            print(f"El Excel tiene {len(hojas)} hojas: {', '.join(hojas)}")
+            print("Deje vacío para procesar TODAS, o escriba el nombre de una hoja.")
+            eleccion = input("Hoja a procesar (o Enter para todas): ").strip()
+            hoja = eleccion if eleccion else None
 
-    # 3. Leer y preview
-    print("\nLeyendo...")
-    datos = __import__("data_processor.io", fromlist=["leer_archivo"]).leer_archivo(ruta, hoja=None)
+    # 3. Mostrar preview
+    print("")
+    print("Leyendo archivo...")
+    datos = leer_archivo(ruta, hoja=hoja)
 
-    if isinstance(datos, dict):  # Excel multi-hoja
-        for nombre, filas in datos.items():
-            limpias = __import__("data_processor.core", fromlist=["limpiar_filas"]).limpiar_filas(filas)
-            print(f"\n--- Preview '{nombre}' ---")
-            for l in calcular_preview(filas, limpias):
-                print(f"  {l}")
-    else:
-        limpias = __import__("data_processor.core", fromlist=["limpiar_filas"]).limpiar_filas(datos)
-        for l in calcular_preview(datos, limpias):
-            print(f"  {l}")
+    if hoja:
+        datos = {hoja: datos} if hoja else datos
+        # normalizar a dict
+        datos = {hoja: datos[hoja]} if hoja else {hoja: datos for hoja, datos in datos.items()}
 
-    # 4. Formato salida
-    formato = preguntar("Formato salida (xlsx/csv/json)", ["xlsx", "csv", "json"])
+    # Si es CSV, lo envolvemos en dict con una sola "hoja"
+    if extension == ".csv":
+        filas_originales = datos
+        filas_limpias = limpiar_filas(filas_originales)
+        print("")
+        for linea in calcular_vista_previa(filas_originales, filas_limpias):
+            print(f"  {linea}")
+        ver_preview = preguntar("¿Mostrar las primeras filas limpias? (s/n)", ["s", "n"])
+        if ver_preview == "s":
+            mostrar_resumen(filas_limpias)
 
-    # 5. Guardar
+        # 4. Formato de salida
+        formato = preguntar("¿En qué formato guardo? (xlsx/csv/json)", ["xlsx", "csv", "json"])
+        base = os.path.splitext(ruta)[0]
+        salida = f"{base}_limpio.{formato}"
+        guardar_filas(salida, filas_limpias)
+        print("")
+        print(f"LISTO. Archivo guardado en: {salida}")
+        return
+
+    # Para Excel, procesar todas las hojas
     base = os.path.splitext(ruta)[0]
-    if isinstance(datos, dict):
-        for nombre, filas in datos.items():
-            limpias = __import__("data_processor.core", fromlist=["limpiar_filas"]).limpiar_filas(filas)
-            nombre_seguro = re.sub(r"[^\w\- ]", "", nombre).strip().replace(" ", "_")
-            salida = f"{os.path.splitext(ruta)[0]}_{nombre}_limpio.{formato}"
-            __import__("data_processor.io", fromlist=["guardar_filas"]).guardar_filas(salida, limpias)
-            print(f"  {nombre} -> {salida}")
-    else:
-        limpias = __import__("data_processor.core", fromlist=["limpiar_filas"]).limpiar_filas(datos)
-        salida = f"{os.path.splitext(ruta)[0]}_limpio.{formato}"
-        __import__("data_processor.io", fromlist=["guardar_filas"]).guardar_filas(salida, limpias)
-        print(f"\n✅ Guardado: {salida}")
+    formato = preguntar("¿En qué formato guardo? (xlsx/csv/json)", ["xlsx", "csv", "json"])
+
+    for nombre, filas in datos.items():
+        filas_limpias = limpiar_filas(filas)
+        nombre_seguro = re.sub(r"[^\w\- ]", "", nombre).strip().replace(" ", "_")
+        salida = f"{base}_{nombre_seguro}_limpio.{formato}"
+        guardar_filas(salida, filas_limpias)
+        print(f"  Hoja '{nombre}' -> {salida}")
+
+    print("")
+    print("LISTO. Archivos guardados.")
 
 
 def main():
@@ -470,38 +494,42 @@ def main():
         menu_interactivo()
         return
 
-    parser = argparse.ArgumentParser(description="Limpia CSV/Excel: vacíos, duplicados (insensible a mayúsculas/acentos), exporta xlsx/csv/json")
-    parser.add_argument("archivo", help="Archivo .csv o .xlsx")
-    parser.add_argument("--salida", choices=["xlsx", "csv", "json"], default="xlsx")
-    parser.add_argument("--hoja", help="Hoja Excel a procesar (solo si multi-hoja)")
-    parser.add_argument("--preview", action="store_true", help="Solo muestra qué haría, sin guardar")
+    parser = argparse.ArgumentParser(description="Limpia archivos CSV o Excel eliminando vacíos y duplicados.")
+    parser.add_argument("archivo", help="Ruta al archivo .csv o .xlsx")
+    parser.add_argument("--salida", choices=["xlsx", "csv", "json"], default="xlsx", help="Formato de salida (xlsx o csv)")
+    parser.add_argument("--hoja", help="Nombre de la hoja a procesar (solo Excel)")
+    parser.add_argument("--vista-previa", action="store_true", help="Solo mostrar qué haría, sin guardar")
     args = parser.parse_args()
 
     if not os.path.isfile(args.archivo):
-        print(f"Error: no existe '{args.archivo}'")
+        print(f"Error: no se encontro el archivo '{args.archivo}'")
         sys.exit(1)
 
+    print(f"Leyendo archivo: {args.archivo}")
     datos = leer_archivo(args.archivo, hoja=args.hoja)
 
-    # Normaliza a dict {hoja: filas}
+    # Normaliza datos a dict {hoja: filas} para unificar el flujo
     if isinstance(datos, list):
         datos = {"hoja1": datos}
 
-    if args.preview:
+    # Preview: solo mostrar, no guardar
+    if args.vista_previa:
         for nombre, filas in datos.items():
             limpias = limpiar_filas(filas)
-            print(f"\n--- Preview '{nombre}' ---")
-            for l in calcular_preview(filas, limpias):
-                print(f"  {l}")
+            print("")
+            print(f"--- Vista previa '{nombre}' ---")
+            for linea in calcular_vista_previa(filas, limpias):
+                print(f"  {linea}")
         return
 
+    # Procesar y guardar
     base = os.path.splitext(args.archivo)[0]
     for nombre, filas in datos.items():
         limpias = limpiar_filas(filas)
         nombre_seguro = re.sub(r"[^\w\- ]", "", nombre).strip().replace(" ", "_")
         salida = f"{base}_{nombre_seguro}_limpio.{args.salida}" if len(datos) > 1 else f"{base}_limpio.{args.salida}"
         guardar_filas(salida, limpias)
-        print(f"✅ Guardado: {salida}")
+        print(f"Archivo limpio guardado en: {salida}")
 
 
 if __name__ == "__main__":
@@ -578,7 +606,7 @@ Limpieza y conversión de CSV/Excel — CLI interactivo, auto-encoding, dedup in
 ## Instalación
 ```bash
 pip install -e tools/data-processor
-# o desde la raíz del monorepo
+# o desde la raíz del monorepositorio
 make install-processor
 ```
 
@@ -588,8 +616,8 @@ make install-processor
 python -m data_processor
 
 # Directo
-python -m data_processor datos.csv --preview
-python -m data_processor datos.xlsx --salida json --hoja Ventas
+python -m data_processor datos.csv --vista-previa
+python -m data_processor datos.xlsx --salida json
 ```
 
 ## Qué hace
@@ -610,11 +638,11 @@ make test-processor
 ## 10. Instalar y probar
 
 ```bash
-# Desde la raíz del monorepo
+# Desde la raíz del monorepositorio
 make install-processor
 
 # Prueba
-python -m data_processor examples/ejemplo.csv --preview
+python -m data_processor examples/ejemplo.csv --vista-previa
 python -m data_processor examples/ejemplo.xlsx --salida json
 ```
 
@@ -622,6 +650,6 @@ python -m data_processor examples/ejemplo.xlsx --salida json
 
 ## Próximos pasos
 
-1. Lee `docs/tutorials/03-pdf-a-excel.md` — construye pdf-to-excel
-2. Lee `docs/tutorials/04-convertidor-archivos.md` — construye file-converter
-3. Lee `docs/tutorials/04-de-codigo-a-servicio.md` — de código a servicio vendible
+1. Lea `docs/tutorials/03-pdf-a-excel.md` — construye pdf-to-excel
+2. Lea `docs/tutorials/04-convertidor-archivos.md` — construye file-converter
+3. Lea `docs/tutorials/04-de-codigo-a-servicio.md` — de código a servicio vendible

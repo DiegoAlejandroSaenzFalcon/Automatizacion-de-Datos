@@ -1,17 +1,17 @@
 # data-tools-workshop
 
-**Monorepo profesional de herramientas de datos para automatización, limpieza y conversión.**
+**Monorepositorio profesional de herramientas de datos para automatización, limpieza y conversión.**
 Código didáctico, testeado, documentado y listo para producción.
 
 ---
 
-## 🎯 Qué es esto
+## Qué es esto
 
-Un **monorepo profesional** que agrupa tres herramientas de datos reales, listas para vender como servicio y diseñadas para que **cualquiera pueda aprender a construirlas leyendo el código y la documentación**.
+Un **monorepositorio profesional** que agrupa tres herramientas de datos reales, listas para vender como servicio y diseñadas para que **cualquiera pueda aprender a construirlas leyendo el código y la documentación**.
 
 | Herramienta | Qué hace | Estado |
 |---|---|---|
-| **data-processor** | Limpia CSV/Excel: quita vacíos, duplicados (incluso con mayúsculas/acentos), normaliza espacios, exporta xlsx/csv/json | ✅ v2.0 |
+| **data-processor** | Limpia CSV/Excel: elimina vacíos, duplicados (incluso con mayúsculas/acentos), normaliza espacios, exporta xlsx/csv/json | ✅ v2.0 |
 | **pdf-to-excel** | Extrae tablas de PDF y las guarda en Excel/CSV | ✅ v1.0 |
 | **file-converter** | Convierte entre CSV, Excel (.xlsx) y JSON | ✅ v1.0 |
 
@@ -19,12 +19,12 @@ Un **monorepo profesional** que agrupa tres herramientas de datos reales, listas
 
 ---
 
-## 🚀 Inicio rápido
+## Inicio rápido
 
 ```bash
-# 1. Clona el repo
-git clone https://github.com/DiegoAlejandroSaenzFalcon/data-tools-workshop.git
-cd data-tools-workshop
+# 1. Clona el repositorio
+git clone https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos.git
+cd Automatizacion-de-Datos
 
 # 2. Instala entorno de desarrollo completo
 make install-dev
@@ -37,7 +37,7 @@ make check
 
 ```bash
 # data-processor: limpia CSV/Excel
-python -m data_processor datos.csv --preview
+python -m data_processor datos.csv --vista-previa
 python -m data_processor datos.xlsx --salida json
 
 # pdf-to-excel: extrae tablas de PDF
@@ -50,10 +50,10 @@ python -m file_converter datos.xlsx --a json
 
 ---
 
-## 🏗️ Arquitectura del monorepo
+## Arquitectura del monorepositorio
 
 ```
-data-tools-workshop/
+Automatizacion-de-Datos/
 ├── tools/                    # Herramientas como paquetes independientes
 │   ├── data-processor/       # Limpieza CSV/Excel (v2.0)
 │   ├── pdf-to-excel/         # PDF → Excel/CSV
@@ -63,9 +63,7 @@ data-tools-workshop/
 ├── scripts/                  # Utilidades de desarrollo
 ├── docs/                     # Documentación técnica + pedagógica (Markdown)
 ├── docs-site/                # MkDocs config para GitHub Pages
-├── scripts/                  # Utilidades de desarrollo
 ├── .github/workflows/        # CI/CD (lint, types, tests, docs, release)
-├── docs/                     # Documentación fuente (MkDocs)
 ├── pyproject.toml            # Configuración raíz + workspaces
 ├── Makefile                  # Comandos comunes (make test, make lint, make docs...)
 ├── .pre-commit-config.yaml   # Hooks de calidad automáticos
@@ -74,22 +72,22 @@ data-tools-workshop/
 
 ---
 
-## 🛠️ Stack tecnológico (estándar 2024)
+## Pila tecnológica (estándar 2024)
 
 | Capa | Herramienta | Por qué |
 |---|---|---|
-| **Packaging** | `pyproject.toml` + `hatch` | Workspaces, lockfile, build moderno |
+| **Empaquetado** | `pyproject.toml` + `hatch` | Workspaces, lockfile, build moderno |
 | **Lint/Format** | `ruff` + `black` | Unificado, rápido, auto-fix |
 | **Type-check** | `mypy` (strict) | Código robusto, autodocumentado |
 | **Tests** | `pytest` + `pytest-cov` | Fixtures, parametrize, coverage |
 | **Docs** | `MkDocs` + `mkdocstrings` + Material | API docs auto-generadas, GitHub Pages gratis |
 | **CI/CD** | GitHub Actions | Matrix testing, deploy docs, release automático |
 | **Versionado** | `commitizen` + `changelog` | SemVer automático, changelog generado |
-| **Pre-commit** | `ruff` + `black` + `mypy` + `commitizen` | Bloquea commits sucios |
+| **Pre-commit** | `ruff` + `black` + `mypy` + `commitizen` | Bloquea confirmaciones sucias |
 
 ---
 
-## 📋 Comandos útiles (Makefile)
+## Comandos útiles (Makefile)
 
 ```bash
 make install-dev      # Entorno de desarrollo completo
@@ -107,7 +105,7 @@ make clean            # Limpia artefactos
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Todos los tests con coverage
@@ -125,7 +123,7 @@ make test-shared
 
 ---
 
-## 📚 Documentación
+## Documentación
 
 La documentación vive en `docs/` y se publica automáticamente en **GitHub Pages**:
 
@@ -137,7 +135,7 @@ La documentación vive en `docs/` y se publica automáticamente en **GitHub Page
   - `04-de-codigo-a-servicio.md` — De código a servicio vendible
 - **Arquitectura**: `docs/architecture/`
 - **Referencia de herramientas**: `docs/tools/`
-- **Negocio**: `docs/business/` (pricing, finding-clients, delivery)
+- **Negocio**: `docs/business/` (precios, búsqueda-clientes, entrega)
 
 ### Ver docs localmente
 
@@ -148,7 +146,7 @@ make docs-serve
 
 ---
 
-## 🔄 CI/CD (GitHub Actions)
+## CI/CD (GitHub Actions)
 
 | Workflow | Qué hace | Cuándo |
 |---|---|---|
@@ -158,13 +156,13 @@ make docs-serve
 
 ---
 
-## 📦 Versionado y Releases
+## Versionado y Releases
 
 Usamos **Semantic Versioning** (SemVer) + **Conventional Commits**:
 
 ```bash
 # Formato commit: tipo(scope): descripción
-feat(processor): añade deduplicación fuzzy
+feat(processor): añade deduplicación difusa
 fix(pdf): corrige extracción en PDF sin bordes
 docs(readme): actualiza instrucciones de uso
 chore(deps): actualiza dependencias
@@ -177,15 +175,15 @@ make release
 # Equivale a: check + cz bump + tag + push + gh release create
 ```
 
-El changelog (`CHANGELOG.md`) se genera automáticamente.
+El historial de cambios (`CHANGELOG.md`) se genera automáticamente.
 
 ---
 
-## 🤝 Contribuir
+## Contribuir
 
 1. Lee `CONTRIBUTING.md`
 2. Fork + branch `feat/tu-mejora`
-3. Commits convencionales (`feat:`, `fix:`, `docs:`, `chore:`)
+3. Confirmaciones convencionales (`feat:`, `fix:`, `docs:`, `chore:`)
 4. `make check` pasa
 5. Pull Request con descripción clara
 
@@ -193,13 +191,13 @@ Ver `CONTRIBUTING.md` y `CODE_OF_CONDUCT.md` para detalles.
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 MIT — libre para usar, modificar, distribuir. Ver `LICENSE`.
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Diego Alejandro Sáenz Falcón**  
 `diegoalejandrosaenzfalcon@gmail.com`  

@@ -150,7 +150,7 @@ pytest tools/file-converter/tests -v
 
 ---
 
-## Roadmap (v1.1+)
+## Hoja de ruta (v1.1+)
 
 - [ ] Soporte multi-hoja Excel (`--hoja`)
 - [ ] Auto-detección de separador CSV
@@ -163,4 +163,4 @@ pytest tools/file-converter/tests -v
 
 ## Contribuir
 
-Ver `CONTRIBUTING.md` en la raíz del monorepo.
+Ver `CONTRIBUTING.md` en la raíz del monorepositorio.

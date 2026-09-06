@@ -1,11 +1,11 @@
-# Pricing — Guía de precios para servicios de datos
+# Precios — Guía de precios para servicios de datos
 
 ---
 
 ## Filosofía
 
-* **Empieza bajo** para conseguir reseñas → **sube progresivo** con evidencia.
-* **Cobra por valor entregado**, no por horas.
+* **Empiece bajo** para conseguir reseñas → **suba progresivo** con evidencia.
+* **Cobre por valor entregado**, no por horas.
 * **Paquetes claros** evitan negociaciones interminables.
 
 ---
@@ -61,20 +61,20 @@ precio_final = round(precio_base * multiplicador_filas * multiplicador_complejid
 
 1. **Siempre 3 opciones** (Básico/Estándar/Premium) — el cerebro elige el medio.
 2. **Destaca el Estándar** como "Más popular".
-3. **Incluye lo que NO haces** (evita scope creep).
-4. **Ofrece garantía**: "Si no quedas conforme, revisión gratis / devolución parcial".
+3. **Incluya lo que NO hace** (evita scope creep).
+4. **Ofrezca garantía**: "Si no queda conforme, revisión gratis / devolución parcial".
 
 ---
 
-## Plantilla de propuesta (copia y adapta)
+## Plantilla de propuesta (copie y adapte)
 
 ```
 Hola [Nombre],
 
-Gracias por contactar. He revisado tu archivo de muestra y esto es lo que puedo hacer:
+Gracias por contactar. He revisado su archivo de muestra y esto es lo que puedo hacer:
 
 **Servicio:** Limpieza y organización de datos Excel/CSV
-**Tu archivo:** ~3.000 filas, 5 columnas, Excel con 2 hojas
+**Su archivo:** ~3.000 filas, 5 columnas, Excel con 2 hojas
 **Entregable:** Archivo limpio (xlsx + csv) + resumen de cambios
 
 **Opciones:**
@@ -82,21 +82,21 @@ Gracias por contactar. He revisado tu archivo de muestra y esto es lo que puedo 
 🔵 **Estándar (Recomendado)** — $30 — Limpieza completa (vacíos, duplicados insensibles a mayúsculas/acentos, normalización), 2 formatos (xlsx+csv), resumen de cambios, 24h
 🟣 **Premium** — $55 — Todo lo anterior + prioridad, revisión ilimitada, formato extra (JSON), 12h
 
-¿Te parece bien el **Estándar**? Si te parece bien, confirmo y empecemos hoy mismo.
+¿Le parece bien el **Estándar**? Si le parece bien, confirmo y empecemos hoy mismo.
 
 Saludos,
-[Tu nombre]
+[Su nombre]
 ```
 
 ---
 
 ## Reglas de oro
 
-1. **Nunca des precio sin ver el archivo** — pide muestra primero.
-2. **No compitas por precio** — compite por calidad, velocidad, comunicación.
-3. **Sube precios cada 5-10 reseñas 5★** — es tu métrica de valor.
-4. **No bajes precio por miedo** — si el cliente regatea, explica el valor o deja ir.
-5. **Registra todo** — hoja de cálculo con: cliente, servicio, precio, tiempo real, reseña.
+1. **Nunca dé precio sin ver el archivo** — pida muestra primero.
+2. **No compita por precio** — compita por calidad, velocidad, comunicación.
+3. **Suba precios cada 5-10 reseñas 5★** — es su métrica de valor.
+4. **No baje precio por miedo** — si el cliente regatea, explique el valor o deje ir.
+5. **Registre todo** — hoja de cálculo con: cliente, servicio, precio, tiempo real, reseña.
 
 ---
 
@@ -109,4 +109,4 @@ Saludos,
 
 ---
 
-> **Regla de oro:** Tu tiempo vale. Si tardas 30 min en un trabajo de $15, tu hora vale $30. Si tardas 2h, tu hora vale $7.5. Optimiza procesos, no bajes precios.
+> **Regla de oro:** Su tiempo vale. Si tarda 30 min en un trabajo de $15, su hora vale $30. Si tarda 2h, su hora vale $7.5. Optimice procesos, no baje precios.

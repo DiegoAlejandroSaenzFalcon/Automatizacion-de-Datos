@@ -1,12 +1,12 @@
-# Roadmap — data-tools-workshop
+# Hoja de ruta — data-tools-workshop
 
-Plan de evolución del monorepo. Cada versión sigue SemVer.
+Plan de evolución del monorepositorio. Cada versión sigue SemVer.
 
 ---
 
 ## Versión actual: 0.2.0 (actual)
 
-**Estado:** Monorepo funcional con 3 herramientas v2.0/v1.0, CI/CD, docs, tests.
+**Estado:** Monorepositorio funcional con 3 herramientas v2.0/v1.0, CI/CD, docs, tests.
 
 | Herramienta | Versión | Estado |
 |---|---|---|
@@ -47,7 +47,7 @@ Plan de evolución del monorepo. Cada versión sigue SemVer.
 | Tutorial 05 | `04-de-codigo-a-servicio.md` — de código a servicio vendible |
 | Referencia tools | `docs/tools/*.md` para cada herramienta |
 | Arquitectura | `docs/architecture/overview.md` + ADRs en `decisions/` |
-| Business docs | `docs/business/` (pricing, finding-clients, delivery) |
+| Business docs | `docs/business/` (precios, búsqueda-clientes, entrega) |
 
 ---
 
@@ -69,7 +69,7 @@ Plan de evolución del monorepo. Cada versión sigue SemVer.
 
 | Herramienta | Mejoras |
 |---|---|
-| **data-processor** | `--carpeta` (procesa carpeta completa), fuzzy dedup (similitud >85%), auto-detección fechas/emails, barra de progreso, export Parquet/SQLite, config YAML |
+| **data-processor** | `--carpeta` (procesa carpeta completa), dedup difuso (similitud >85%), auto-detección fechas/emails, barra de progreso, export Parquet/SQLite, config YAML |
 | **pdf-to-excel** | OCR opcional (Tesseract), unir tablas consecutivas, áreas de extracción fijas (config YAML), procesar carpeta |
 | **file-converter** | Multi-hoja Excel (`--hoja`), auto-separador CSV, validación JSON schema, Parquet, streaming >100MB |
 | **shared** | CLI base (Click/Rich), logging estructurado (loguru), config pydantic-settings, exceptions jerárquicas |
@@ -79,7 +79,7 @@ Plan de evolución del monorepo. Cada versión sigue SemVer.
 ## 1.0.0 — "First Stable Release"
 
 **Criterios de release:**
-- Monorepo completo, testeado, documentado
+- Monorepositorio completo, testeado, documentado
 - 3 herramientas v1.0+ instalables independientemente
 - CI/CD verde en matrix 3.10/3.11/3.12
 - Docs en GitHub Pages actualizadas
@@ -101,8 +101,8 @@ Plan de evolución del monorepo. Cada versión sigue SemVer.
 
 ---
 
-## Cómo proponer cambios al roadmap
+## Cómo proponer cambios a la hoja de ruta
 
-1. Abre un **issue** con label `roadmap`
-2. Describe: qué, por qué, esfuerzo estimado, impacto
+1. Abra un **issue** con label `hoja-de-ruta`
+2. Describa: qué, por qué, esfuerzo estimado, impacto
 3. Discusión en el issue → decisión → se añade al milestone correspondiente

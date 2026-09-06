@@ -1,4 +1,4 @@
-# Delivery — Entrega profesional y gestión de cliente
+# Entrega — Entrega profesional y gestión de cliente
 
 ---
 
@@ -7,28 +7,28 @@
 ```
 1. Cliente envía archivo + requisitos
        ↓
-2. Tú envías PREVIEW gratis (5-10 filas procesadas)
+2. Usted envía VISTA PREVIA gratis (5-10 filas procesadas)
        ↓
 3. Cliente aprueba / pide ajustes
        ↓
-4. Procesas archivo COMPLETO
+4. Procesa archivo COMPLETO
        ↓
-4. Entregas: archivo(s) + resumen + instrucciones
+5. Entrega: archivo(s) + resumen + instrucciones
        ↓
-5. Cliente revisa → Revisión (si pide) → Cierre
+6. Cliente revisa → Revisión (si pide) → Cierre
        ↓
-6. Pides reseña → Archivas proyecto
+7. Pide reseña → Archiva proyecto
 ```
 
 ---
 
-## 2. Checklist de entrega (copia y usa)
+## 2. Checklist de entrega (copie y use)
 
 ### Antes de enviar
 - [ ] Archivo procesado completo (sin filas de prueba)
 - [ ] Formato correcto (xlsx/csv/json según pedido)
 - [ ] Resumen de cambios incluido
-- [ ] Archivo original intacto (no modificaste el del cliente)
+- [ ] Archivo original intacto (no modificó el del cliente)
 - [ ] Sin datos sensibles expuestos (si los había, anonimizados)
 - [ ] Formato de entrega correcto (adjunto en plataforma, no link externo)
 
@@ -41,7 +41,7 @@
 
 ---
 
-## 3. Plantilla de resumen de cambios (copia y rellena)
+## 3. Plantilla de resumen de cambios (copie y rellene)
 
 ```
 RESUMEN DE CAMBIOS — [Nombre archivo original]
@@ -69,7 +69,7 @@ NOTAS:
 [Observaciones especiales, ej: "Columna 'Fecha' tenía formatos mixtos, se estandarizó a DD/MM/AAAA"]
 
 ---
-Entregado por: [Tu nombre]
+Entregado por: [Su nombre]
 Fecha: [Fecha]
 Contacto: [Email/Fiverr/Workana]
 ```
@@ -80,11 +80,11 @@ Contacto: [Email/Fiverr/Workana]
 
 | Escenario | Qué hacer |
 |---|---|
-| Cliente pide ajuste menor (formato, columna extra) | Incluido en 1 revisión gratis → hazlo y reenvía |
+| Cliente pide ajuste menor (formato, columna extra) | Incluido en 1 revisión gratis → hágalo y reenvíe |
 | Cliente pide cambio de alcance (nueva columna, otro archivo) | "Eso está fuera del alcance original. Puedo hacerlo por $X adicional" |
 | Cliente no responde tras entrega | Espera 48h → mensaje de seguimiento → cierra a los 5 días |
 | Cliente insatisfecho | "¿Qué exactamente no cumple? Lo corrijo gratis si es error mío" |
-| Cliente pide reembolso | Si es error tuyo → reembolso parcial. Si es cambio de opinión → no reembolso, ofreces revisión |
+| Cliente pide reembolso | Si es error suyo → reembolso parcial. Si es cambio de opinión → no reembolso, ofrece revisión |
 
 ---
 
@@ -96,38 +96,38 @@ Contacto: [Email/Fiverr/Workana]
 ```
 Hola [Nombre],
 
-Adjunto tu archivo procesado:
+Adjunto su archivo procesado:
 - `archivo_limpio.xlsx` — datos limpios listos para usar
 - `resumen_cambios.txt` — detalle de qué se limpió
 - `instrucciones.txt` — cómo usar el archivo
 
 Resumen rápido: se eliminaron [X] filas vacías y [Y] duplicados, se normalizaron espacios y se convirtieron números a formato real.
 
-Cualquier duda o ajuste menor, me avisas. Incluye 1 revisión gratis.
+Cualquier duda o ajuste menor, me avisa. Incluye 1 revisión gratis.
 
 Saludos,
-[Tu nombre]
+[Su nombre]
 ```
 
 **Seguimiento (48h sin respuesta):**
 ```
 Hola [Nombre],
 
-Quería confirmar que recibiste el archivo y todo está bien. Si necesitas algún ajuste, avísame y lo hacemos sin cargo (incluye 1 revisión).
+Quería confirmar que recibiste el archivo y todo está bien. Si necesita algún ajuste, avísame y lo hacemos sin cargo (incluye 1 revisión).
 
 Saludos,
-[Tu nombre]
+[Su nombre]
 ```
 
 **Pidiendo reseña (tras confirmación):**
 ```
 Hola [Nombre],
 
-Me alegra que todo esté bien. Si tienes un minuto, una reseña de 5 estrellas en [Fiverr/Workana] me ayuda muchísimo a seguir creciendo. Es opcional, pero se agradece infinitamente.
+Me alegra que todo esté bien. Si tiene un minuto, una reseña de 5 estrellas en [Fiverr/Workana] me ayuda muchísimo a seguir creciendo. Es opcional, pero se agradece infinitamente.
 
-¡Gracias y a disposición para lo que necesites!
+¡Gracias y a disposición para lo que necesite!
 
-[Tu nombre]
+[Su nombre]
 ```
 
 ---
@@ -138,15 +138,15 @@ Me alegra que todo esté bien. Si tienes un minuto, una reseña de 5 estrellas e
 proyectos/
 ├── 2025-01-15_cliente-A_fiverr/
 │   ├── original/           # Archivo que mandó el cliente (NO TOCAR)
-│   ├── procesado/          # Archivos generados por ti
-│   ├── entregado/          # Lo que subiste a la plataforma
+│   ├── procesado/          # Archivos generados por usted
+│   ├── entregado/          # Lo que subió a la plataforma
 │   ├── comunicacion/       # Capturas de chat, emails
 │   └── factura/            # Captura de pago, factura si aplica
 ├── 2025-01-18_cliente_B_workana/
 │   └── ...
 ```
 
-> **Regla:** Nunca borres la carpeta `original/`. Es tu evidencia si hay disputa.
+> **Regla:** Nunca borre la carpeta `original/`. Es su evidencia si hay disputa.
 
 ---
 
@@ -154,8 +154,8 @@ proyectos/
 
 | Métrica | Objetivo | Cómo medir |
 |---|---|---|
-| **Tiempo de respuesta** | < 2h (horario laboral) | Timestamp primer mensaje → tu respuesta |
-| **Tiempo de entrega** | ≤ 24h estándar | Timestamp aprobación preview → entrega |
+| **Tiempo de respuesta** | < 2h (horario laboral) | Timestamp primer mensaje → su respuesta |
+| **Tiempo de entrega** | ≤ 24h estándar | Timestamp aprobación vista previa → entrega |
 | **Tasa de revisión** | < 10% de pedidos | # revisiones / # entregas |
 | **Satisfacción** | 100% 5★ | Reseñas en plataforma |
 | **Reclamaciones** | 0% | Disputas abiertas / total pedidos |
@@ -185,4 +185,4 @@ proyectos/
 
 ---
 
-> **Regla de oro:** La entrega no termina cuando subes el archivo. Termina cuando el cliente confirma que todo está perfecto Y tú tienes todo archivado para referencia futura.
+> **Regla de oro:** La entrega no termina cuando sube el archivo. Termina cuando el cliente confirma que todo está perfecto Y usted tiene todo archivado para referencia futura.

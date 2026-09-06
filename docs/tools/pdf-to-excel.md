@@ -126,12 +126,12 @@ pytest tools/pdf-to-excel/tests -v
 1. **No hace OCR** — PDFs escaneados (imagen) requieren OCR previo
 2. **Tablas sin bordes** — `pdfplumber` detecta mejor tablas con bordes/líneas
 3. **Celdas combinadas** — Pueden salir desalineadas
-3. **No une tablas** — Cada tabla = hoja/archivo separado
-4. **No procesa carpetas** — Un PDF a la vez
+4. **No une tablas** — Cada tabla = hoja/archivo separado
+5. **No procesa carpetas** — Un PDF a la vez
 
 ---
 
-## Roadmap (v1.1+)
+## Hoja de ruta (v1.1+)
 
 - [ ] OCR opcional con Tesseract (`--ocr`)
 - [ ] Detectar tablas sin bordes (heurísticas)
@@ -144,4 +144,4 @@ pytest tools/pdf-to-excel/tests -v
 
 ## Contribuir
 
-Ver `CONTRIBUTING.md` en la raíz del monorepo.
+Ver `CONTRIBUTING.md` en la raíz del monorepositorio.

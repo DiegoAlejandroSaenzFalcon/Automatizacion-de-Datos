@@ -11,7 +11,7 @@ Crear una herramienta CLI que:
 2. Convierte entre los tres formatos
 3. CSV con separador `;` (estándar español)
 4. JSON como lista de objetos `{columna: valor}`
-4. CLI simple: `python -m file_converter archivo.csv --a xlsx`
+5. CLI simple: `python -m file_converter archivo.csv --a xlsx`
 
 ---
 
@@ -84,7 +84,7 @@ CSV, Excel (.xlsx) y JSON.
 
 Uso:
     python -m file_converter archivo.csv --a xlsx
-    python -m file_converter archivo.xlsx --a json
+    python -m file_converter archivo.xlsx --a csv
     python -m file_converter datos.json --a csv
 """
 
@@ -130,9 +130,9 @@ def leer_json(ruta: str) -> List[List[Any]]:
         return []
     if isinstance(datos, list) and datos and isinstance(datos[0], dict):
         cabeceras = list(datos[0].keys())
-        filas = [list(datos[0].keys())]
-        for reg in datos:
-            filas.append([reg.get(c, "") for c in datos[0].keys()])
+        filas = [cabeceras]
+        for registro in datos:
+            filas.append([reg.get(c, "") for c in cabeceras])
         return filas
     return datos  # asume lista de listas
 
@@ -172,7 +172,7 @@ def guardar_json(ruta: str, filas: list):
     for fila in filas[1:]:
         regs.append({cabeceras[i]: fila[i] if i < len(fila) else "" for i in range(len(cabeceras))})
     with open(ruta, "w", encoding="utf-8") as f:
-        json.dump(filas, f, ensure_ascii=False, indent=2)
+        json.dump(regs, f, ensure_ascii=False, indent=2)
 
 
 def guardar(ruta: str, filas: list, formato: str):
@@ -280,6 +280,7 @@ python -m file_converter datos.csv --a json
 ```
 
 ## Formatos soportados
+
 | De | A | Soporta |
 |---|---|---|
 | CSV | xlsx, json | sí |
@@ -287,10 +288,16 @@ python -m file_converter datos.csv --a json
 | JSON | csv, xlsx | sí (lista de objetos) |
 
 ## Limitaciones
+
 - CSV usa separador `;` (estándar español)
 - Solo primera hoja de Excel
 - JSON debe ser lista de objetos con misma estructura
 - Herramienta base, no producto comercial completo
+
+## Tests
+
+```bash
+make test-converter
 ```
 
 ---
