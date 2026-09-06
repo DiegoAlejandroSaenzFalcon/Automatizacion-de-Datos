@@ -1,0 +1,96 @@
+# Release Automation - Semantic Release
+# Se ejecuta en: push de tag v*, workflow_dispatch
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 0.3.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install commitizen[pyproject] hatch
+
+      - name: Verify tag matches version
+        if: github.event_name == 'push'
+        run: |
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          PY_VERSION=$(cz version --project)
+          if [ "$TAG_VERSION" != "$PY_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) != pyproject.toml version ($PY_VERSION)"
+            exit 1
+          fi
+          echo "✅ Versions match: v$PY_VERSION"
+
+      - name: Run full CI checks
+        run: |
+          pip install -e .[dev,data-processor,pdf-to-excel,file-converter,shared]
+          make check
+
+      - name: Generate changelog
+        run: |
+          cz changelog --incremental --dry-run
+          cz changelog --incremental
+
+      - name: Commit changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "chore(changelog): update for v$(cz version --project)"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish to PyPI (optional)
+        if: false  # Cambiar a true cuando quieras publicar a PyPI
+        run: |
+          hatch build
+          pip install twine
+          twine upload dist/* --username __token__ --password ${{ secrets.PYPI_TOKEN }}
+
+      - name: Notify (opcional: Slack, Discord, email)
+        if: always()
+        run: |
+          echo "✅ Release v${{ steps.get_version.outputs.version }} completado"

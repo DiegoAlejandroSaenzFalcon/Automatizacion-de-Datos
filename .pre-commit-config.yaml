@@ -1,0 +1,85 @@
+# pre-commit hooks para data-tools-workshop
+# Ejecuta: pre-commit install && pre-commit install --hook-type commit-msg
+# Ver: https://pre-commit.com/
+
+repos:
+  # Ruff: linter + formatter rápido (reemplaza flake8, isort, black, pyupgrade, etc.)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.7
+    hooks:
+      - id: ruff
+        name: Ruff lint (con auto-fix)
+        args: [--fix, --exit-non-zero-on-fix]
+        types_or: [python]
+      - id: ruff-format
+        name: Ruff format
+        types_or: [python]
+
+  # Black: formateo adicional (complementa ruff-format)
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+        language_version: python3.10
+        args: [--line-length=100]
+
+  # MyPy: type-checking estricto
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests, types-setuptools]
+        args: [--strict, --show-error-codes]
+        exclude: ^tools/.*/tests/
+
+  # Commitizen: mensajes de commit convencionales
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.28.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+        args: [check]
+
+  # YAML lint
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [-c, .yamllint.yml]
+
+  # JSON lint
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: debug-logger
+
+  # Detectar secrets (API keys, passwords, etc.)
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: [--baseline, .secrets.baseline]
+        exclude: ^examples/
+
+  # Verificar que pyproject.toml esté bien formado
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-toml
+      - id: check-json
+      - id: check-yaml
+
+# Configuración global
+default_language_version:
+  python: python3.10
+
+default_stages: [commit]
+fail_fast: false

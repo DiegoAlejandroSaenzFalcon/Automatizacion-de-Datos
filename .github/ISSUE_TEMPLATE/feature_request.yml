@@ -1,0 +1,27 @@
+---
+name: Feature Request
+about: Propón una nueva funcionalidad o mejora
+title: "[FEAT] "
+labels: ["enhancement"]
+assignees: ""
+---
+
+## Problema que resuelve
+Describe claramente el problema que esta funcionalidad resolvería.
+
+## Solución propuesta
+Describe la funcionalidad que te gustaría ver implementada.
+
+## Usuario objetivo
+¿Quién se beneficia? (ej. cliente final, desarrollador que usa la librería, tú mismo)
+
+## Alternativas consideradas
+Otras soluciones que evaluaste y por qué las descartaste.
+
+## Contexto adicional
+Bocetos, mockups, referencias a otras librerías, enlaces útiles.
+
+## ¿Disponible para implementar?
+- [ ] Sí, puedo implementarlo yo mismo
+- [ ] No, pero puedo testear/revisar
+- [ ] No, solo propongo la idea

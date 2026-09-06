@@ -1,0 +1,142 @@
+site_name: data-tools-workshop
+site_description: Monorepo profesional de herramientas de datos — código didáctico, testeado, documentado
+site_author: Diego Alejandro Sáenz Falcón
+site_url: https://diegoalejandrosaenzfalcon.github.io/data-tools-workshop/
+repo_url: https://github.com/DiegoAlejandroSaenzFalcon/data-tools-workshop
+repo_name: DiegoAlejandroSaenzFalcon/data-tools-workshop
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Modo oscuro
+    - scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [../tools]
+          options:
+            show_root_heading: true
+            show_root_toc_entry: false
+            show_source: true
+            show_root_full_path: false
+            members_order: source
+            filters: ["!^_"]
+            show_signature: true
+            show_signature_annotations: true
+            merge_init_into_class: true
+
+nav:
+  - Inicio: index.md
+  - Primeros pasos:
+      - getting-started.md
+  - Tutoriales:
+      - 01-desde-cero: tutorials/01-desde-cero.md
+      - 02-procesador-datos: tutorials/02-procesador-datos.md
+      - 03-pdf-a-excel: tutorials/03-pdf-a-excel.md
+      - 04-convertidor-archivos: tutorials/04-convertidor-archivos.md
+      - 04-de-codigo-a-servicio: tutorials/04-de-codigo-a-servicio.md
+  - Herramientas:
+      - data-processor: tools/data-processor.md
+      - pdf-to-excel: tools/pdf-to-excel.md
+      - file-converter: tools/file-converter.md
+      - roadmap: tools/roadmap.md
+  - Arquitectura:
+      - Visión general: architecture/overview.md
+      - Decisiones (ADR): architecture/decisions/index.md
+  - Negocio:
+      - Pricing: business/pricing.md
+      - Buscar clientes: business/finding-clients.md
+      - Entrega y soporte: business/delivery.md
+  - Contribuir:
+      - Guía: ../CONTRIBUTING.md
+      - Código de conducta: ../CODE_OF_CONDUCT.md
+      - Changelog: ../CHANGELOG.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/DiegoAlejandroSaenzFalcon
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/diegoalejandrosaenzfalcon
+    - icon: fontawesome/solid/envelope
+      link: mailto:diegoalejandrosaenzfalcon@gmail.com
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+  version:
+    provider: mike
+
+copyright: Copyright &copy; 2025 Diego Alejandro Sáenz Falcón — MIT License

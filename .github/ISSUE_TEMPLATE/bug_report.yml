@@ -1,0 +1,33 @@
+---
+name: Bug Report
+about: Reporta un bug para que podamos corregirlo
+title: "[BUG] "
+labels: ["bug"]
+assignees: ""
+---
+
+## Descripción del bug
+Descripción clara y concisa del problema.
+
+## Pasos para reproducir
+1. Ve a '...'
+2. Ejecuta '...'
+3. Observa el error
+
+## Comportamiento esperado
+Qué debería pasar.
+
+## Comportamiento actual
+Qué pasa en realidad (incluye error completo, traceback, logs).
+
+## Entorno
+- OS: [ej. Windows 11, Ubuntu 22.04, macOS 14]
+- Python: [ej. 3.12.1]
+- Versión del paquete: [ej. 0.2.0]
+- Herramienta afectada: [data-processor / pdf-to-excel / file-converter / shared]
+
+## Archivo de ejemplo (si aplica)
+Adjunta o pega un archivo mínimo que reproduzca el bug.
+
+## Contexto adicional
+Capturas de pantalla, logs extra, cualquier cosa relevante.

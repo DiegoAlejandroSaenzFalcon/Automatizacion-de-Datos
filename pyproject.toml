@@ -1,0 +1,220 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "data-tools-workshop"
+version = "0.1.0"
+description = "Monorepo profesional de herramientas de datos: procesador, PDF→Excel, convertidor. Código didáctico, tests, CI/CD, docs."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Diego Alejandro Sáenz Falcón", email = "diegoalejandrosaenzfalcon@gmail.com"}
+]
+maintainers = [
+    {name = "Diego Alejandro Sáenz Falcón", email = "diegoalejandrosaenzfalcon@gmail.com"}
+]
+keywords = ["data-cleaning", "csv", "excel", "pdf", "json", "automation", "cli", "education"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Spreadsheet",
+    "Topic :: Text Processing :: Markup :: JSON",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5.0",
+    "black>=24.0.0",
+    "mypy>=1.10.0",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "pre-commit>=3.7.0",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.25.0",
+    "hatch>=1.11.0",
+]
+data-processor = [
+    "openpyxl>=3.1.0",
+]
+pdf-to-excel = [
+    "pdfplumber>=0.11.0",
+    "openpyxl>=3.1.0",
+    "reportlab>=4.0.0",
+]
+file-converter = [
+    "openpyxl>=3.1.0",
+]
+shared = [
+    "pydantic>=2.7.0",
+    "click>=8.1.0",
+    "rich>=13.7.0",
+    "loguru>=0.7.0",
+    "pydantic-settings>=2.3.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.25.0",
+]
+all = [
+    "openpyxl>=3.1.0",
+    "pdfplumber>=0.11.0",
+    "reportlab>=4.0.0",
+    "pydantic>=2.7.0",
+    "click>=8.1.0",
+    "rich>=13.7.0",
+    "loguru>=0.7.0",
+    "pydantic-settings>=2.3.0",
+]
+
+[tool.hatch.envs.default]
+dependencies = []
+
+[tool.hatch.envs.dev]
+dependencies = [
+    "ruff>=0.5.0",
+    "black>=24.0.0",
+    "mypy>=1.10.0",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "pre-commit>=3.7.0",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.25.0",
+    "hatch>=1.11.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = []
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+    "ARG", # flake8-unused-arguments
+    "PTH", # pathlib
+    "ERA", # eradicate
+    "PL",  # pylint
+    "TRY", # tryceratops
+]
+ignore = []
+fixable = ["E", "F", "I", "UP", "B", "C4", "SIM", "T20", "ARG", "PTH", "ERA", "PL"]
+unfixable = []
+exclude = [".git", "__pycache__", ".venv", "dist", "build", ".mypy_cache", ".ruff_cache", "htmlcov", ".pytest_cache", "docs-site/build"]
+
+[tool.ruff.lint.per-file-ignores]
+"tools/*/tests/*" = ["S101", "S106"]  # pytest assertions, subprocess
+"scripts/*" = ["S101", "T20"]  # prints en scripts
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+skip-string-normalization = false
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+pretty = true
+namespace_packages = true
+explicit_package_bases = true
+enable_error_code = ["arg-type", "attr-defined", "index", "union-attr", "return-value", "misc"]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "dist",
+    "build",
+    ".mypy_cache",
+    ".ruff_cache",
+    "htmlcov",
+    ".pytest_cache",
+    "docs-site/build",
+    "tools/*/tests",
+    "scripts",
+]
+
+[[tool.mypy.overrides]]
+module = "tools.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tools/*/tests", "tools/shared/tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --strict-markers --strict-config --tb=short"
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["tools"]
+omit = ["*/tests/*", "*/__pycache__/*", "*/__init__.py"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+precision = 2
+
+[tool.hatch.build.targets.wheel]
+packages = []
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.25.0",
+]
+
+[tool.commitizen]
+version = "0.1.0"
+version_files = ["pyproject.toml"]
+tag_format = "v$version"
+commit_message = "chore(release): v{version}"
+changelog_file = "CHANGELOG.md"
+changelog_format = "markdown"
