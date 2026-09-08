@@ -1,4 +1,4 @@
-# CI Pipeline - Lint + Type-check + Tests + Validación AI_GUIDELINES
+﻿# CI Pipeline - Lint + Type-check + Tests + Validación AI_GUIDELINES
 # Se ejecuta en: push/PR a main, tags
 
 name: CI - Validación Obligatoria
@@ -48,22 +48,25 @@ jobs:
           echo "✅ AI_GUIDELINES firmado"
 
       - name: Verificar idioma español en documentación
-        run: |
-          python -c "
-import sys, re, pathlib
-errores = []
-for f in pathlib.Path('.').rglob('*.md'):
-    if f.name in ['AI_GUIDELINES.md', 'AGENTS.md', 'HONEYTOKEN.md', 'CLA.md']: continue
-    texto = f.read_text(encoding='utf-8')
-    for i, linea in enumerate(texto.split('\n')[:20]):
-        if re.match(r'^#{1,3}\s+[A-Z][a-z]+(\s+[A-Z][a-z]+)+', linea):
-            print(f'{f}:{i+1}: Título en inglés: {linea.strip()}'); exit(1)
-        for palabra in ['Roadmap', 'Getting Started', 'Architecture', 'Reference', 'Business', 'Pricing', 'Overview', 'Summary', 'Introduction', 'Conclusion', 'Background', 'Methodology', 'Results', 'Discussion', 'Features', 'Requirements', 'Installation', 'Usage', 'Configuration', 'Deployment', 'Testing', 'Contributing', 'License', 'Authors', 'Acknowledgments', 'Changelog', 'Migration', 'Upgrade', 'Downgrade', 'Release', 'Version', 'Build', 'Deploy', 'Test', 'Lint', 'Format', 'Type Check', 'Security', 'Performance', 'Benchmark', 'Profiling', 'Optimization', 'Refactoring', 'Feature', 'Bug Fix', 'Hotfix', 'Breaking Change', 'Deprecated', 'Removed', 'Added', 'Changed', 'Fixed', 'Security', 'Performance', 'Improvement', 'Enhancement']:
-            if palabra in linea and linea.startswith('#'):
-                print(f'ERROR: {f}: Palabra inglesa en título: {palabra}'); exit(1)
-    print('✅ Documentación en español correcta')
-"
         shell: bash
+        run: |
+          python3 - <<'PYEOF'
+          import re, pathlib
+          skip = {'AI_GUIDELINES.md','AGENTS.md','HONEYTOKEN.md','CLA.md'}
+          eng = ['Roadmap','Getting Started','Architecture','Reference','Business','Pricing','Overview','Summary','Introduction','Conclusion','Background','Methodology','Results','Discussion','Features','Requirements','Installation','Usage','Configuration','Deployment','Testing','Contributing','License','Authors','Acknowledgments','Changelog','Migration','Upgrade','Downgrade','Release','Version','Build','Deploy','Test','Lint','Format','Type Check','Security','Performance','Benchmark','Profiling','Optimization','Refactoring','Feature','Bug Fix','Hotfix','Breaking Change','Deprecated','Removed','Added','Changed','Fixed','Improvement','Enhancement']
+          bad = False
+          for f in pathlib.Path('.').rglob('*.md'):
+              if f.name in skip:
+                  continue
+              for i, l in enumerate(f.read_text(encoding='utf-8').split('\n')[:20], 1):
+                  if re.match(r'^#{1,3}\s+[A-Z][a-z]+(\s+[A-Z][a-z]+)+', l):
+                      print(f'{f}:{i}: titulo en ingles: {l.strip()}'); bad = True
+                  if l.startswith('#') and any(p in l for p in eng):
+                      print(f'ERROR: {f}: palabra inglesa en titulo: {l.strip()}'); bad = True
+          if bad:
+              exit(1)
+          print('OK Documentacion en espanol correcta')
+          PYEOF
 
   lint-and-type-check:
     name: Lint + Type-check
