@@ -1,0 +1,797 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Diego Alejandro Saenz Falcon">
+      
+      
+        <link rel="canonical" href="https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos/tutorials/04-de-codigo-a-servicio/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Tutorial 05: De código a servicio vendible - Automatizacion de Datos: Herramientas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial-05-de-codigo-a-servicio-vendible" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Automatizacion de Datos: Herramientas" class="md-header__button md-logo" aria-label="Automatizacion de Datos: Herramientas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Automatizacion de Datos: Herramientas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial 05: De código a servicio vendible
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Automatizacion de Datos: Herramientas" class="md-nav__button md-logo" aria-label="Automatizacion de Datos: Herramientas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Automatizacion de Datos: Herramientas
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-de-herramienta-a-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. De herramienta a servicio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-defina-su-servicio-plantilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Defina su servicio (plantilla)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-precios-sugeridos-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Precios sugeridos (inicio)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-perfil-en-fiverr-workana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Perfil en Fiverr / Workana
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Perfil en Fiverr / Workana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#titulo-del-gig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Título del Gig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tags-5-maximos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tags (5 máximos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descripción (resumen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-anticipe-dudas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ (anticipe dudas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-flujo-de-trabajo-con-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Flujo de trabajo con cliente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-checklist-antes-de-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Checklist antes de entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-escalamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Escalamiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-errores-que-evitar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Errores que evitar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-su-primer-cliente-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Su primer cliente real
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-su-hoja-de-ruta-proximos-30-dias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Su hoja de ruta (próximos 30 días)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tutorial-05-de-codigo-a-servicio-vendible">Tutorial 05: De código a servicio vendible</h1>
+<p>Cómo convertir sus herramientas en un servicio real que pueda vender en Fiverr, Workana o de forma directa.</p>
+<hr />
+<h2 id="1-de-herramienta-a-servicio">1. De herramienta a servicio</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Servicio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python -m data_processor archivo.csv</code></td>
+<td>"Limpio y organizo sus archivos Excel/CSV"</td>
+</tr>
+<tr>
+<td><code>python -m pdf_to_excel factura.pdf</code></td>
+<td>"Extraigo tablas de sus PDFs a Excel"</td>
+</tr>
+<tr>
+<td><code>python -m file_converter datos.csv --a xlsx</code></td>
+<td>"Convierto sus archivos entre formatos"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regla:</strong> El cliente no compra código, compra <strong>resultado</strong>.</p>
+<hr />
+<h2 id="2-defina-su-servicio-plantilla">2. Defina su servicio (plantilla)</h2>
+<pre><code class="language-markdown"># Servicio: Limpieza y organización de datos Excel/CSV
+
+## Qué incluye
+- Elimino filas vacías y duplicados (aunque tengan mayúsculas/acentos distintos)
+- Normalizo espacios, mayúsculas, formato de texto
+- Convierto entre CSV, Excel y JSON
+- Entrega en 24-48h
+
+## Qué NO incluye
+- Análisis estadístico avanzado
+- Macros/VBA
+- Bases de datos / SQL
+- Datos sensibles (DNI, tarjetas, claves) sin acuerdo previo
+
+## Entregables
+- Archivo limpio en formato solicitado (xlsx/csv/json)
+- Resumen de cambios (filas eliminadas, duplicados, etc.)
+- Archivo original intacto (no modifico su original)
+
+## Tiempo de entrega
+- Hasta 5.000 filas: 24h
+- 5.000 - 50.000 filas: 48h
+- Más de 50.000: a convenir
+</code></pre>
+<hr />
+<h2 id="3-precios-sugeridos-inicio">3. Precios sugeridos (inicio)</h2>
+<table>
+<thead>
+<tr>
+<th>Paquete</th>
+<th>Qué incluye</th>
+<th>Precio inicio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Básico</strong></td>
+<td>1 archivo ≤ 1.000 filas</td>
+<td>$10-15</td>
+</tr>
+<tr>
+<td><strong>Estándar</strong></td>
+<td>Hasta 5.000 filas, formato + normalización</td>
+<td>$25-35</td>
+</tr>
+<tr>
+<td><strong>Premium</strong></td>
+<td>Múltiples archivos, &gt;5.000 filas, resumen ejecutivo</td>
+<td>$50-80</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Regla:</strong> Empiece barato ($10-15) para conseguir sus primeras 5-10 reseñas de 5 estrellas. Luego suba precios.</p>
+</blockquote>
+<hr />
+<h2 id="4-perfil-en-fiverr-workana">4. Perfil en Fiverr / Workana</h2>
+<h3 id="titulo-del-gig">Título del Gig</h3>
+<blockquote>
+<p>"Limpio, organizo y convierto sus archivos Excel/CSV — rápido y preciso"</p>
+</blockquote>
+<h3 id="tags-5-maximos">Tags (5 máximos)</h3>
+<p><code>excel</code>, <code>data cleaning</code>, <code>csv</code>, <code>data entry</code>, <code>spreadsheet</code></p>
+<h3 id="descripcion-resumen">Descripción (resumen)</h3>
+<blockquote>
+<p>Limpio sus archivos Excel/CSV: elimino filas vacías, duplicados (aunque tengan mayúsculas/acentos distintos), normalizo espacios y convierto entre formatos. Entrega rápida, revisión incluida, comunicación en español.</p>
+</blockquote>
+<h3 id="faq-anticipe-dudas">FAQ (anticipe dudas)</h3>
+<table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>¿Maneja datos sensibles?</td>
+<td>No trabajo con DNI, tarjetas, claves sin NDA firmado. Para datos normales (nombres, emails, productos) sin problema.</td>
+</tr>
+<tr>
+<td>¿Qué pasa si no me gusta el resultado?</td>
+<td>Incluyo 1 revisión gratis. Si no queda conforme, devolución parcial.</td>
+</tr>
+<tr>
+<td>¿Cuánto tarda?</td>
+<td>24-48h estándar. Urgente 12h (+50%).</td>
+</tr>
+<tr>
+<td>¿Formato de entrega?</td>
+<td>xlsx, csv, json. El que necesite.</td>
+</tr>
+<tr>
+<td>¿Maneja archivos grandes?</td>
+<td>Hasta 100K filas estándar. Más grande: cotizamos.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-flujo-de-trabajo-con-cliente">5. Flujo de trabajo con cliente</h2>
+<pre><code>1. Cliente contacta → 2. Pide archivo muestra → 3. Envía vista previa gratis
+       ↓
+4. Cliente aprueba → 5. Procesa completo → 6. Entregas + resumen
+       ↓
+7. Cliente revisa → 8. Revisión (si pide) → 9. Cierre + reseña
+</code></pre>
+<hr />
+<h2 id="6-checklist-antes-de-entregar">6. Checklist antes de entregar</h2>
+<ul>
+<li>[ ] Vista previa enviada y aprobada</li>
+<li>[ ] Archivo procesado completo</li>
+<li>[ ] Resumen de cambios incluido</li>
+<li>[ ] Archivo en formato solicitado (xlsx/csv/json)</li>
+<li>[ ] Sin datos sensibles expuestos</li>
+<li>[ ] Archivo original intacto (no modificó el del cliente)</li>
+</ul>
+<hr />
+<h2 id="5-escalamiento">5. Escalamiento</h2>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Qué hace</th>
+<th>Ingreso objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0-3 meses</strong></td>
+<td>5-10 clientes, reseñas 5★, portafolio</td>
+<td>$100-300/mes</td>
+</tr>
+<tr>
+<td><strong>3-6 meses</strong></td>
+<td>Subir precios, paquetes premium, automatizar más</td>
+<td>$500-1000/mes</td>
+</tr>
+<tr>
+<td><strong>6-12 meses</strong></td>
+<td>Especializarse (ej. solo e-commerce, solo contabilidad), subir precios</td>
+<td>$1500-3000/mes</td>
+</tr>
+<tr>
+<td><strong>12+ meses</strong></td>
+<td>Contratar junior, crear agencia, producto propio</td>
+<td>$5000+/mes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-errores-que-evitar">7. Errores que evitar</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prometer lo que no sabe hacer</td>
+<td>Cliente enojado, mala reseña</td>
+<td>Diga "no sé hacerlo aún, pero aprendo en X días"</td>
+</tr>
+<tr>
+<td>No pedir archivo muestra</td>
+<td>Pierde tiempo en archivo incompatible</td>
+<td>Siempre pida muestra ANTES de aceptar</td>
+</tr>
+<tr>
+<td>No definir alcance</td>
+<td>Scope creep (piden más sin pagar)</td>
+<td>Defina alcance por escrito en el chat</td>
+</tr>
+<tr>
+<td>No dar vista previa</td>
+<td>Cliente no confía</td>
+<td>Siempre envíe vista previa gratis (5-10 filas)</td>
+</tr>
+<tr>
+<td>No responder rápido</td>
+<td>Cliente se va a otro</td>
+<td>Responda en &lt;2h en horario laboral</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-su-primer-cliente-real">7. Su primer cliente real</h2>
+<ol>
+<li><strong>Cree el Gig en Fiverr</strong> con los textos de arriba</li>
+<li><strong>Postúlese en Workana</strong> a 3-5 proyectos de "limpieza Excel/CSV" esta semana</li>
+<li><strong>Cuando llegue el primer mensaje</strong> → pégalo aquí y lo analizamos juntos</li>
+<li><strong>Entregue</strong> → pida reseña → repita</li>
+</ol>
+<hr />
+<h2 id="8-su-hoja-de-ruta-proximos-30-dias">8. Su hoja de ruta (próximos 30 días)</h2>
+<table>
+<thead>
+<tr>
+<th>Día</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-3</td>
+<td>Publique Gig en Fiverr + 5 postulaciones Workana</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>Primeras respuestas → envíe vistas previas gratis</td>
+</tr>
+<tr>
+<td>8-14</td>
+<td>Primer cliente → entrega impecable → pida reseña</td>
+</tr>
+<tr>
+<td>15-21</td>
+<td>2-3 clientes → suba precio $5</td>
+</tr>
+<tr>
+<td>22-30</td>
+<td>5+ reseñas 5★ → suba precio a estándar ($20-30)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><strong>Recuerde:</strong> El código ya está. Ahora falta la parte de negocio. Empiece hoy.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Diego Alejandro Saenz Falcon
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

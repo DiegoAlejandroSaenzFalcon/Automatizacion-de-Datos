@@ -1,0 +1,905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Diego Alejandro Saenz Falcon">
+      
+      
+        <link rel="canonical" href="https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos/architecture/overview/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Arquitectura — Visión general - Automatizacion de Datos: Herramientas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitectura-vision-general" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Automatizacion de Datos: Herramientas" class="md-header__button md-logo" aria-label="Automatizacion de Datos: Herramientas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Automatizacion de Datos: Herramientas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitectura — Visión general
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Automatizacion de Datos: Herramientas" class="md-nav__button md-logo" aria-label="Automatizacion de Datos: Herramientas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Automatizacion de Datos: Herramientas
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principios-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principios de diseño
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-de-alto-nivel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de alto nivel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flujo-de-datos-generico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de datos genérico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisiones-de-arquitectura-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisiones de arquitectura (ADR)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patrones-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrones de código
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Patrones de código">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-funciones-puras-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Funciones puras + pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-type-hints-obligatorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Type hints obligatorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-docstrings-google-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Docstrings Google style
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-errores-tipados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Errores tipados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convenciones-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convenciones de código
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy Docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensibilidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-nueva-herramienta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Añadir nueva herramienta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-formato-de-salida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Añadir formato de salida
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="arquitectura-vision-general">Arquitectura — Visión general</h1>
+<hr />
+<h2 id="principios-de-diseno">Principios de diseño</h2>
+<ol>
+<li><strong>Monorepo modular</strong> — Herramientas independientes, código compartido en <code>shared/</code></li>
+<li><strong>Paquetes instalables</strong> — Cada herramienta es un paquete Python instalable (<code>pip install -e tools/x</code>)</li>
+<li><strong>Código didáctico</strong> — Docstrings explicativos, type hints, tests, README pedagógico</li>
+<li><strong>Calidad automatizada</strong> — Ruff, Black, MyPy strict, pytest, pre-commit, CI/CD</li>
+<li><strong>Documentación viva</strong> — MkDocs + MkDocstrings → GitHub Pages auto-deploy</li>
+</ol>
+<hr />
+<h2 id="estructura-de-alto-nivel">Estructura de alto nivel</h2>
+<pre><code>data-tools-workshop/
+├── tools/                    # Herramientas (paquetes independientes)
+│   ├── data-processor/       # Limpieza CSV/Excel
+│   ├── pdf-to-excel/         # PDF → Excel/CSV
+│   ├── file-converter/       # CSV ↔ Excel ↔ JSON
+│   └── shared/               # Código común (CLI, exceptions, logging, config, utils)
+├── examples/                 # Datos de prueba
+├── docs/                     # Documentación fuente (Markdown)
+├── docs-site/                # MkDocs config + overrides
+├── scripts/                  # Utilidades de desarrollo
+├── .github/workflows/        # CI/CD
+├── pyproject.toml            # Config raíz + workspaces (hatch)
+├── Makefile                  # Comandos unificados
+├── .pre-commit-config.yaml   # Hooks de calidad
+└── CHANGELOG.md              # Historial de versiones
+</code></pre>
+<hr />
+<h2 id="flujo-de-datos-generico">Flujo de datos genérico</h2>
+<pre><code>Entrada (CSV/Excel/PDF/JSON)
+        ↓
+Lectura (auto-encoding, multi-hoja)
+        ↓
+Limpieza (vacíos, duplicados, normalización)
+        ↓
+Conversión (números reales, tipos)
+        ↓
+Exportación (XLSX/CSV/JSON)
+        ↓
+Salida (archivo + resumen)
+</code></pre>
+<hr />
+<h2 id="decisiones-de-arquitectura-adr">Decisiones de arquitectura (ADR)</h2>
+<p>Ver <code>docs/architecture/decisions/</code> para decisiones documentadas.</p>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Título</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0001</td>
+<td>Monorepo vs Multi-repo</td>
+<td>Aceptado</td>
+</tr>
+<tr>
+<td>0002</td>
+<td>Hatch vs Poetry vs PDM</td>
+<td>Aceptado (Hatch)</td>
+</tr>
+<tr>
+<td>0003</td>
+<td>Ruff + Black vs Flake8 + Black</td>
+<td>Aceptado (Ruff)</td>
+</tr>
+<tr>
+<td>0004</td>
+<td>MyPy strict mode</td>
+<td>Aceptado</td>
+</tr>
+<tr>
+<td>0005</td>
+<td>MkDocs + Material vs Sphinx</td>
+<td>Aceptado (MkDocs)</td>
+</tr>
+<tr>
+<td>0006</td>
+<td>Click vs Typer vs argparse</td>
+<td>Aceptado (argparse + Click en shared)</td>
+</tr>
+<tr>
+<td>0007</td>
+<td>Pydantic vs dataclasses</td>
+<td>Aceptado (Pydantic v2 para config)</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>Logging: stdlib vs loguru</td>
+<td>Aceptado (loguru en shared)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="patrones-de-codigo">Patrones de código</h2>
+<h3 id="1-funciones-puras-pipeline">1. Funciones puras + pipeline</h3>
+<pre><code class="language-python">def pipeline(datos):
+    return (leer(datos)
+            |&gt; limpiar_espacios
+            |&gt; quitar_vacias
+            |&gt; deduplicar
+            |&gt; convertir_tipos
+            |&gt; guardar)
+</code></pre>
+<h3 id="2-type-hints-obligatorios">2. Type hints obligatorios</h3>
+<pre><code class="language-python">def normalizar_texto(texto: str) -&gt; str:
+    ...
+
+def leer_csv(ruta: str) -&gt; list[list[str]]:
+    ...
+</code></pre>
+<h3 id="3-docstrings-google-style">3. Docstrings Google style</h3>
+<pre><code class="language-python">def normalizar_texto(texto: str) -&gt; str:
+    &quot;&quot;&quot;Normaliza texto para comparación insensible a mayúsculas/acentos.
+
+    Pasos (orden importante):
+      1. NFD + quitar combinantes → quita acentos
+      2. lower() → minúsculas
+      3. re.sub(r&quot;\s+&quot;, &quot; &quot;, ...) → colapsa espacios
+
+    Args:
+        texto: Cadena a normalizar.
+
+    Returns:
+        Texto normalizado (minúsculas, sin acentos, espacios simples).
+
+    Example:
+        &gt;&gt;&gt; normalizar_texto(&quot;  María Gómez  &quot;)
+        'maria gomez'
+    &quot;&quot;&quot;
+</code></pre>
+<h3 id="4-errores-tipados">4. Errores tipados</h3>
+<pre><code class="language-python">class DataToolsError(Exception):
+    &quot;&quot;&quot;Excepción base del proyecto.&quot;&quot;&quot;
+    pass
+
+class EncodingError(DataToolsError):
+    &quot;&quot;&quot;Error de detección/lectura de encoding.&quot;&quot;&quot;
+    pass
+
+class ValidationError(DataToolsError):
+    &quot;&quot;&quot;Error de validación de datos.&quot;&quot;&quot;
+    pass
+</code></pre>
+<hr />
+<h2 id="convenciones-de-codigo">Convenciones de código</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Estándar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Line length</strong></td>
+<td>100 chars (ruff/black)</td>
+</tr>
+<tr>
+<td><strong>Quotes</strong></td>
+<td>Dobles (black)</td>
+</tr>
+<tr>
+<td><strong>Imports</strong></td>
+<td>Absolutos, agrupados (stdlib, third-party, local)</td>
+</tr>
+<tr>
+<td><strong>Type hints</strong></td>
+<td>Obligatorios en funciones públicas (mypy strict)</td>
+</tr>
+<tr>
+<td><strong>Docstrings</strong></td>
+<td>Google style, en español, con ejemplo</td>
+</tr>
+<tr>
+<td><strong>Tests</strong></td>
+<td>pytest, parametrize, fixtures en <code>conftest.py</code></td>
+</tr>
+<tr>
+<td><strong>Commits</strong></td>
+<td>Conventional Commits (<code>feat:</code>, <code>fix:</code>, <code>docs:</code>, <code>chore:</code>)</td>
+</tr>
+<tr>
+<td><strong>Versionado</strong></td>
+<td>SemVer + Commitizen (<code>cz bump</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="testing-strategy">Testing strategy</h2>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Herramienta</th>
+<th>Cobertura objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit</td>
+<td>pytest + parametrize</td>
+<td>80%+ código nuevo</td>
+</tr>
+<tr>
+<td>Integración</td>
+<td>pytest + fixtures reales</td>
+<td>Rutas críticas</td>
+</tr>
+<tr>
+<td>E2E</td>
+<td>Scripts manuales + CI</td>
+<td>Flujos críticos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estructura-de-tests">Estructura de tests</h3>
+<pre><code>tools/*/tests/
+├── conftest.py          # Fixtures compartidas
+├── test_core.py         # Lógica de negocio
+├── test_io.py           # Lectura/escritura
+└── test_cli.py          # CLI (subprocess o CliRunner)
+</code></pre>
+<hr />
+<h2 id="cicd-pipeline">CI/CD Pipeline</h2>
+<pre><code>Push/PR → main
+    │
+    ├─► lint (ruff)
+    │
+    ├─► type-check (mypy strict)
+    │
+    ├─► test (pytest matrix 3.10/3.11/3.12)
+    │
+    └─► check-results (aggregator)
+</code></pre>
+<h3 id="deploy-docs">Deploy Docs</h3>
+<pre><code>Push main → docs/** → mkdocs build → GitHub Pages
+</code></pre>
+<h3 id="release">Release</h3>
+<pre><code>Tag v* → cz bump → changelog → tag → GitHub Release → (opcional) PyPI
+</code></pre>
+<hr />
+<h2 id="seguridad">Seguridad</h2>
+<ul>
+<li><strong>Cero secretos en código</strong> — <code>.pre-commit-config.yaml</code> con detect-secrets</li>
+<li><strong>Dependencias auditadas</strong> — <code>pip-audit</code> en CI</li>
+<li><strong>Sin eval/exec</strong> — Prohibido en código</li>
+<li><strong>Validación de entrada</strong> — Pydantic en shared/config</li>
+</ul>
+<hr />
+<h2 id="extensibilidad">Extensibilidad</h2>
+<h3 id="anadir-nueva-herramienta">Añadir nueva herramienta</h3>
+<ol>
+<li><code>tools/nueva-herramienta/</code> con estructura estándar</li>
+<li><code>pyproject.toml</code> propio + entry point</li>
+<li>Tests en <code>tests/</code></li>
+<li>README didáctico</li>
+<li>Añadir a <code>pyproject.toml</code> root <code>[project.optional-dependencies]</code></li>
+<li>Tests en CI matrix</li>
+<li>Documentación en <code>docs/tools/</code></li>
+</ol>
+<h3 id="anadir-formato-de-salida">Añadir formato de salida</h3>
+<ol>
+<li>Función <code>guardar_formato()</code> en <code>shared/io.py</code></li>
+<li>Registrar en <code>converter.py</code> / <code>io.py</code> de cada herramienta</li>
+<li>Test + docstring</li>
+<li>Actualizar CLI <code>--salida</code> choices</li>
+<li>README + CHANGELOG</li>
+</ol>
+<hr />
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://hatch.pypa.io/">Hatch docs</a></li>
+<li><a href="https://docs.astral.sh/ruff/">Ruff docs</a></li>
+<li><a href="https://mypy.readthedocs.io/">MyPy docs</a></li>
+<li><a href="https://squidfunk.github.io/mkdocs-material/">MkDocs Material</a></li>
+<li><a href="https://commitizen-tools.github.io/commitizen/">Commitizen</a></li>
+<li><a href="https://www.conventionalcommits.org/">Conventional Commits</a></li>
+<li><a href="https://keepachangelog.com/">Keep a Changelog</a></li>
+<li><a href="https://semver.org/">Semantic Versioning</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Diego Alejandro Saenz Falcon
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

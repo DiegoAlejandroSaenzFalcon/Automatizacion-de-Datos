@@ -1,0 +1,1134 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Diego Alejandro Saenz Falcon">
+      
+      
+        <link rel="canonical" href="https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos/tutorials/02-procesador-datos/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Tutorial 02: Construir data-processor desde cero - Automatizacion de Datos: Herramientas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial-02-construir-data-processor-desde-cero" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Automatizacion de Datos: Herramientas" class="md-header__button md-logo" aria-label="Automatizacion de Datos: Herramientas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Automatizacion de Datos: Herramientas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial 02: Construir data-processor desde cero
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Automatizacion de Datos: Herramientas" class="md-nav__button md-logo" aria-label="Automatizacion de Datos: Herramientas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Automatizacion de Datos: Herramientas
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-estructura-del-paquete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Estructura del paquete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-srcdata_processor__init__py" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. src/data_processor/__init__.py
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-srcdata_processorutilspy-utilidades-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. src/data_processor/utils.py — Utilidades base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-srcdata_processoriopy-lectura-y-escritura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. src/data_processor/io.py — Lectura y escritura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-srcdata_processorcorepy-logica-de-limpieza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. src/data_processor/core.py — Lógica de limpieza
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-srcdata_processorclipy-cli-menu-interactivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. src/data_processor/cli.py — CLI + Menú interactivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-tests-teststest_corepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Tests (tests/test_core.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-readmemd-del-paquete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. README.md del paquete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-hace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué hace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tutorial-02-construir-data-processor-desde-cero">Tutorial 02: Construir data-processor desde cero</h1>
+<p>Este tutorial le guía paso a paso para construir <strong>data-processor v2.0</strong> desde cero, entendiendo cada decisión de diseño.</p>
+<hr />
+<h2 id="objetivo">Objetivo</h2>
+<p>Construir una herramienta CLI que:
+1. Lee CSV/Excel con auto-detección de encoding
+2. Limpia: filas vacías, duplicados (insensible a mayúsculas/acentos), espacios
+3. Exporta a XLSX (números reales), CSV (punto y coma), JSON
+4. Tiene menú interactivo y modo vista previa</p>
+<hr />
+<h2 id="1-estructura-del-paquete">1. Estructura del paquete</h2>
+<pre><code>tools/data-processor/
+├── pyproject.toml
+├── src/data_processor/
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── core.py
+24: │   ├── io.py
+25: │   └── utils.py
+25: ├── tests/
+26: │   ├── test_core.py
+27: │   ├── test_io.py
+28: │   └── test_cli.py
+29: ├── examples/
+30: │   └── ejemplo.csv
+31: ├── README.md
+32: └── pyproject.toml
+33: ```
+
+---
+
+## 2. pyproject.toml del paquete
+
+```toml
+[build-system]
+requires = [&quot;hatchling&quot;]
+build-backend = &quot;hatchling.build&quot;
+
+[project]
+name = &quot;data-processor&quot;
+version = &quot;2.0.0&quot;
+description = &quot;Limpieza y conversión de datos CSV/Excel — CLI interactivo y didáctico&quot;
+readme = &quot;README.md&quot;
+license = {text = &quot;MIT&quot;}
+authors = [{name = &quot;Diego Alejandro Sáenz Falcón&quot;, email = &quot;diegoalejandrosaenzfalcon@gmail.com&quot;}]
+requires-python = &quot;&gt;=3.10&quot;
+dependencies = [
+    &quot;openpyxl&gt;=3.1.0&quot;,
+]
+classifiers = [
+    &quot;Development Status :: 4 - Beta&quot;,
+    &quot;Intended Audience :: Developers&quot;,
+    &quot;License :: OSI Approved :: MIT License&quot;,
+    &quot;Programming Language :: Python :: 3&quot;,
+    &quot;Topic :: Office/Business :: Financial :: Spreadsheet&quot;,
+]
+
+[project.optional-dependencies]
+dev = [&quot;pytest&gt;=8.0&quot;, &quot;pytest-cov&gt;=4.0&quot;, &quot;ruff&gt;=0.5&quot;, &quot;black&gt;=24.0&quot;, &quot;mypy&gt;=1.10&quot;]
+
+[project.scripts]
+data-processor = &quot;data_processor.cli:main&quot;
+
+[tool.hatch.build.targets.wheel]
+packages = [&quot;src/data_processor&quot;]
+</code></pre>
+<hr />
+<h2 id="3-srcdata_processor__init__py">3. <code>src/data_processor/__init__.py</code></h2>
+<pre><code class="language-python">&quot;&quot;&quot;data-processor v2.0 — Limpieza y conversión de datos CSV/Excel.
+
+Herramienta CLI didáctica para limpiar archivos CSV/Excel:
+- Auto-detección de encoding (utf-8, latin-1, cp1252)
+- Deduplicación insensible a mayúsculas/acentos
+- Procesa múltiples hojas de Excel
+- Vista previa antes de guardar
+- Exporta a xlsx (números reales), csv (;), json
+
+Uso:
+    python -m data_processor archivo.csv --vista-previa
+    python -m data_processor datos.xlsx --salida json
+&quot;&quot;&quot;
+
+from .cli import main
+
+__version__ = &quot;2.0.0&quot;
+__all__ = [&quot;main&quot;]
+</code></pre>
+<hr />
+<h2 id="3-srcdata_processorutilspy-utilidades-base">3. <code>src/data_processor/utils.py</code> — Utilidades base</h2>
+<pre><code class="language-python">&quot;&quot;&quot;Utilidades base: normalización de texto, conversión de tipos.&quot;&quot;&quot;
+
+import re
+import unicodedata
+from typing import Any
+
+
+def normalizar_texto(texto: str) -&gt; str:
+    &quot;&quot;&quot;Normaliza texto para comparación insensible a mayúsculas/acentos.
+
+    Pasos (orden importante):
+      1. NFD + quitar combinantes → quita acentos (á → a)
+      2. lower() → minúsculas
+      3. re.sub(r&quot;\s+&quot;, &quot; &quot;, ...) → colapsa espacios múltiples
+
+    Args:
+        texto: Cadena a normalizar.
+
+    Returns:
+        Texto normalizado (minúsculas, sin acentos, espacios simples).
+
+    Example:
+        &gt;&gt;&gt; normalizar_texto(&quot;  María Gómez  &quot;)
+        'maria gomez'
+    &quot;&quot;&quot;
+    if not isinstance(texto, str):
+        return str(texto)
+
+    # NFD descompone: &quot;á&quot; → &quot;a&quot; + tilde combinante
+    sin_acentos = unicodedata.normalize(&quot;NFD&quot;, texto)
+    sin_acentos = &quot;&quot;.join(c for c in sin_acentos if not unicodedata.combining(c))
+    minusculas = sin_acentos.lower()
+    return re.sub(r&quot;\s+&quot;, &quot; &quot;, minusculas.strip())
+
+
+def convertir_a_numero(valor: Any) -&gt; Any:
+    &quot;&quot;&quot;Intenta convertir una cadena a número (int o float).
+
+    En Excel los números deben ser int/float, no strings,
+    para poder sumar, filtrar, hacer pivot tables.
+
+    Args:
+        valor: Valor a convertir (cualquier tipo).
+
+    Returns:
+        int, float, o el valor original si no es convertible.
+    &quot;&quot;&quot;
+    if not isinstance(valor, str):
+        return valor
+
+    texto = valor.strip()
+    if not texto:
+        return valor
+
+    if texto.isdigit():
+        return int(texto)
+
+    # Acepta &quot;45.000&quot; o &quot;45,000&quot; como float
+    try:
+        return float(valor.replace(&quot;,&quot;, &quot;.&quot;))
+    except ValueError:
+        return valor
+</code></pre>
+<hr />
+<h2 id="4-srcdata_processoriopy-lectura-y-escritura">4. <code>src/data_processor/io.py</code> — Lectura y escritura</h2>
+<pre><code class="language-python">&quot;&quot;&quot;Lectura y escritura de archivos CSV, Excel, JSON.&quot;&quot;&quot;
+
+import csv
+import json
+import os
+from typing import Any, Dict, List
+
+import openpyxl
+
+
+def detectar_encoding(ruta_archivo: str) -&gt; str:
+    &quot;&quot;&quot;Detecta el encoding correcto de un archivo de texto.
+
+    Prueba en orden: utf-8-sig, latin-1, cp1252.
+    latin-1 nunca falla (lee cualquier byte), así que nunca falla la lectura.
+
+    Args:
+        ruta_archivo: Ruta al archivo.
+
+    Returns:
+        Encoding detectado (str).
+    &quot;&quot;&quot;
+    candidatos = [&quot;utf-8-sig&quot;, &quot;latin-1&quot;, &quot;cp1252&quot;]
+    for encoding in candidatos:
+        try:
+            with open(ruta_archivo, encoding=encoding) as f:
+                f.read()
+            return encoding
+        except UnicodeDecodeError:
+            continue
+    return &quot;latin-1&quot;
+
+
+def leer_csv(ruta_archivo: str) -&gt; List[List[str]]:
+    &quot;&quot;&quot;Lee CSV con encoding detectado automáticamente.&quot;&quot;&quot;
+    encoding = detectar_encoding(ruta_archivo)
+    with open(ruta_archivo, newline=&quot;&quot;, encoding=encoding) as f:
+        return [fila for fila in csv.reader(f)]
+
+
+def leer_excel(ruta_archivo: str, hoja: str | None = None):
+    &quot;&quot;&quot;Lee Excel: una hoja (lista de listas) o todas (dict {hoja: filas}).&quot;&quot;&quot;
+    libro = openpyxl.load_workbook(ruta_archivo, read_only=True, data_only=True)
+
+    if hoja:
+        if hoja not in openpyxl.load_workbook(ruta_archivo).sheetnames:
+            raise ValueError(f&quot;Hoja '{hoja}' no existe&quot;)
+        hoja_obj = openpyxl.load_workbook(ruta_archivo, read_only=True, data_only=True)[hoja]
+        filas = [[c if c is not None else &quot;&quot; for c in fila] for fila in hoja_obj.iter_rows(values_only=True)]
+        libro.close()
+        return filas
+
+    resultado = {}
+    for nombre in openpyxl.load_workbook(ruta_archivo).sheetnames:
+        h = openpyxl.load_workbook(ruta_archivo, read_only=True, data_only=True)[nombre]
+        filas = [[c if c is not None else &quot;&quot; for c in fila] for fila in h.iter_rows(values_only=True)]
+        resultado[nombre] = filas
+    return resultado
+
+
+def leer_archivo(ruta_archivo: str, hoja: str | None = None):
+    &quot;&quot;&quot;Detecta tipo y llama al lector correspondiente.&quot;&quot;&quot;
+    ext = os.path.splitext(ruta_archivo)[1].lower()
+
+    if ext == &quot;.csv&quot;:
+        return leer_csv(ruta_archivo)
+    if ext in (&quot;.xlsx&quot;, &quot;.xlsm&quot;):
+        return leer_excel(ruta_archivo, hoja=hoja)
+    raise ValueError(f&quot;Formato no soportado: {ext}&quot;)
+
+
+def convertir_a_numero(valor):
+    &quot;&quot;&quot;Convierte strings numéricos a int/float para Excel real.&quot;&quot;&quot;
+    if not isinstance(valor, str):
+        return valor
+    texto = str(valor).strip()
+    if not texto:
+        return valor
+    if texto.isdigit():
+        return int(texto)
+    try:
+        return float(str(valor).replace(&quot;,&quot;, &quot;.&quot;))
+    except ValueError:
+        return valor
+
+
+def guardar_filas(ruta_salida: str, filas: list):
+    &quot;&quot;&quot;Guarda filas según extensión: .xlsx, .csv (;), .json.&quot;&quot;&quot;
+    import os
+    ext = os.path.splitext(ruta_salida)[1].lower()
+
+    # Convierte strings numéricos a números reales para Excel/JSON
+    def convertir(valor):
+        if not isinstance(valor, str):
+            return valor
+        texto = valor.strip()
+        if texto.isdigit():
+            return int(texto)
+        try:
+            return float(texto.replace(&quot;,&quot;, &quot;.&quot;))
+        except ValueError:
+            return valor
+
+    filas_convertidas = [[convertir(celda) for celda in fila] for fila in filas]
+
+    if ext == &quot;.xlsx&quot;:
+        import openpyxl
+        salida = f&quot;{os.path.splitext(ruta_salida)[0]}_limpio.xlsx&quot;
+        libro = openpyxl.Workbook()
+        hoja = libro.active
+        for fila in filas_convertidas:
+            hoja.append(fila)
+        libro.save(salida)
+        return salida
+
+    if ext == &quot;.csv&quot;:
+        import csv
+        salida = f&quot;{os.path.splitext(ruta_salida)[0]}_limpio.csv&quot;
+        with open(salida, &quot;w&quot;, newline=&quot;&quot;, encoding=&quot;utf-8-sig&quot;) as f:
+            csv.writer(f, delimiter=&quot;;&quot;).writerows(filas)
+        return salida
+
+    if ext == &quot;.json&quot;:
+        import json
+        salida = f&quot;{os.path.splitext(ruta_salida)[0]}_limpio.json&quot;
+        if not filas:
+            with open(salida, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+                json.dump([], f)
+            return
+        cabeceras = filas[0]
+        registros = []
+        for fila in filas[1:]:
+            registros.append({cabeceras[i]: fila[i] if i &lt; len(fila) else &quot;&quot; for i in range(len(cabeceras))})
+        with open(salida, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+            json.dump(registros, f, ensure_ascii=False, indent=2)
+        return salida
+
+    raise ValueError(f&quot;Formato no soportado: {ext}&quot;)
+</code></pre>
+<hr />
+<h2 id="4-srcdata_processorcorepy-logica-de-limpieza">4. <code>src/data_processor/core.py</code> — Lógica de limpieza</h2>
+<pre><code class="language-python">&quot;&quot;&quot;Lógica principal de limpieza: espacios, vacíos, duplicados.&quot;&quot;&quot;
+
+import re
+from typing import List
+from .utils import normalizar_texto
+
+
+def limpiar_espacios(filas: list) -&gt; list:
+    &quot;&quot;&quot;Normaliza espacios en cada celda: trim + colapsa internos.&quot;&quot;&quot;
+    def norm(v):
+        if not isinstance(v, str):
+            return v
+        return re.sub(r&quot;\s+&quot;, &quot; &quot;, v.strip())
+    return [[norm(c) for c in fila] for fila in filas]
+
+
+def quitar_filas_vacias(filas: list) -&gt; list:
+    &quot;&quot;&quot;Elimina filas donde todas las celdas son vacías/espacios.&quot;&quot;&quot;
+    return [f for f in filas if any(str(c).strip() for c in f)]
+
+
+def deduplicar(filas: list) -&gt; list:
+    &quot;&quot;&quot;Elimina duplicados usando normalización (insensible a mayúsculas/acentos).
+
+    La primera fila (cabecera) se respeta y no se deduplica.
+    &quot;&quot;&quot;
+    if not filas:
+        return filas
+
+    cabecera = filas[0]
+    cuerpo = filas[1:]
+
+    vistos = set()
+    resultado = [cabecera]
+
+    for fila in cuerpo:
+        # Clave normalizada para comparar insensible a mayúsculas/acentos
+        clave = tuple(normalizar_texto(str(c)) for c in fila)
+        if clave not in vistos:
+            vistos.add(clave)
+            resultado.append(fila)
+
+    return resultado
+
+
+def limpiar_filas(filas: list) -&gt; list:
+    &quot;&quot;&quot;Pipeline completo: espacios → vacías → deduplicar.&quot;&quot;&quot;
+    filas = limpiar_espacios(filas)
+    filas = quitar_filas_vacias(filas)
+    filas = deduplicar(filas)
+    return filas
+
+
+def calcular_vista_previa(filas_originales: list, filas_limpias: list) -&gt; list:
+    &quot;&quot;&quot;Genera líneas de vista previa comparando original vs limpio.&quot;&quot;&quot;
+    vacias = sum(1 for f in filas_originales if not any(str(c).strip() for c in f))
+    total_orig = len(filas)
+    total_limp = len(filas_limpias)
+
+    datos_orig = max(0, total_orig - 1 - sum(1 for f in filas if not any(str(c).strip() for c in f)))
+    datos_final = max(0, len(filas) - 1)
+    duplicados = max(0, datos_orig - (len(filas_limpias) - 1))
+
+    return [
+        f&quot;Filas totales en el original: {total_orig}&quot;,
+        f&quot;Filas vacías encontradas: {sum(1 for f in filas if not any(str(c).strip() for c in f))}&quot;,
+        f&quot;Duplicados eliminados: {max(0, (len(filas) - 1 - sum(1 for f in filas if not any(str(c).strip() for c in f))) - (len(filas_limpias) - 1))}&quot;,
+        f&quot;Filas finales (con cabecera): {len(filas_limpias)}&quot;,
+        f&quot;Filas de datos finales: {len(filas_limpias) - 1}&quot;,
+    ]
+</code></pre>
+<hr />
+<h2 id="5-srcdata_processorclipy-cli-menu-interactivo">5. <code>src/data_processor/cli.py</code> — CLI + Menú interactivo</h2>
+<pre><code class="language-python">&quot;&quot;&quot;CLI principal: argparse + menú interactivo.&quot;&quot;&quot;
+
+import argparse
+import os
+import sys
+import re
+from .io import leer_archivo
+from .core import limpiar_filas, calcular_vista_previa, mostrar_resumen
+from .io import guardar_filas
+
+
+def preguntar(mensaje: str, opciones: list) -&gt; str:
+    while True:
+        r = input(f&quot;{mensaje} &quot;).strip().lower()
+        if r in opciones:
+            return r
+        print(f&quot;  Opciones: {', '.join(opciones)}&quot;)
+
+
+def menu_interactivo():
+    &quot;&quot;&quot;Guía al usuario paso a paso sin necesidad de saber terminal.&quot;&quot;&quot;
+    print(&quot;=&quot; * 60)
+    print(&quot;PROCESADOR DE DATOS v2.0&quot;)
+    print(&quot;=&quot; * 60)
+    print(&quot;Limpia CSV/Excel: vacíos, duplicados (insensible a mayúsculas/acentos), espacios&quot;)
+    print(&quot;Exporta: xlsx (números reales), csv (;), json&quot;)
+    print(&quot;&quot;)
+
+    # 1. Pide la ruta
+    while True:
+        ruta = input(&quot;Ruta del archivo (arrastre aquí): &quot;).strip().strip('&quot;').strip(&quot;'&quot;)
+        if os.path.isfile(ruta):
+            break
+        print(f&quot;  No existe: {ruta}&quot;)
+
+    # 2. Pregunta si es Excel y tiene varias hojas
+    extension = os.path.splitext(ruta)[1].lower()
+    hoja = None
+    if extension in (&quot;.xlsx&quot;, &quot;.xlsm&quot;):
+        import openpyxl
+        libro = openpyxl.load_workbook(ruta, read_only=True)
+        hojas = libro.sheetnames
+        libro.close()
+        if len(hojas) &gt; 1:
+            print(&quot;&quot;)
+            print(f&quot;El Excel tiene {len(hojas)} hojas: {', '.join(hojas)}&quot;)
+            print(&quot;Deje vacío para procesar TODAS, o escriba el nombre de una hoja.&quot;)
+            eleccion = input(&quot;Hoja a procesar (o Enter para todas): &quot;).strip()
+            hoja = eleccion if eleccion else None
+
+    # 3. Mostrar preview
+    print(&quot;&quot;)
+    print(&quot;Leyendo archivo...&quot;)
+    datos = leer_archivo(ruta, hoja=hoja)
+
+    if hoja:
+        datos = {hoja: datos} if hoja else datos
+        # normalizar a dict
+        datos = {hoja: datos[hoja]} if hoja else {hoja: datos for hoja, datos in datos.items()}
+
+    # Si es CSV, lo envolvemos en dict con una sola &quot;hoja&quot;
+    if extension == &quot;.csv&quot;:
+        filas_originales = datos
+        filas_limpias = limpiar_filas(filas_originales)
+        print(&quot;&quot;)
+        for linea in calcular_vista_previa(filas_originales, filas_limpias):
+            print(f&quot;  {linea}&quot;)
+        ver_preview = preguntar(&quot;¿Mostrar las primeras filas limpias? (s/n)&quot;, [&quot;s&quot;, &quot;n&quot;])
+        if ver_preview == &quot;s&quot;:
+            mostrar_resumen(filas_limpias)
+
+        # 4. Formato de salida
+        formato = preguntar(&quot;¿En qué formato guardo? (xlsx/csv/json)&quot;, [&quot;xlsx&quot;, &quot;csv&quot;, &quot;json&quot;])
+        base = os.path.splitext(ruta)[0]
+        salida = f&quot;{base}_limpio.{formato}&quot;
+        guardar_filas(salida, filas_limpias)
+        print(&quot;&quot;)
+        print(f&quot;LISTO. Archivo guardado en: {salida}&quot;)
+        return
+
+    # Para Excel, procesar todas las hojas
+    base = os.path.splitext(ruta)[0]
+    formato = preguntar(&quot;¿En qué formato guardo? (xlsx/csv/json)&quot;, [&quot;xlsx&quot;, &quot;csv&quot;, &quot;json&quot;])
+
+    for nombre, filas in datos.items():
+        filas_limpias = limpiar_filas(filas)
+        nombre_seguro = re.sub(r&quot;[^\w\- ]&quot;, &quot;&quot;, nombre).strip().replace(&quot; &quot;, &quot;_&quot;)
+        salida = f&quot;{base}_{nombre_seguro}_limpio.{formato}&quot;
+        guardar_filas(salida, filas_limpias)
+        print(f&quot;  Hoja '{nombre}' -&gt; {salida}&quot;)
+
+    print(&quot;&quot;)
+    print(&quot;LISTO. Archivos guardados.&quot;)
+
+
+def main():
+    if len(sys.argv) == 1:
+        menu_interactivo()
+        return
+
+    parser = argparse.ArgumentParser(description=&quot;Limpia archivos CSV o Excel eliminando vacíos y duplicados.&quot;)
+    parser.add_argument(&quot;archivo&quot;, help=&quot;Ruta al archivo .csv o .xlsx&quot;)
+    parser.add_argument(&quot;--salida&quot;, choices=[&quot;xlsx&quot;, &quot;csv&quot;, &quot;json&quot;], default=&quot;xlsx&quot;, help=&quot;Formato de salida (xlsx o csv)&quot;)
+    parser.add_argument(&quot;--hoja&quot;, help=&quot;Nombre de la hoja a procesar (solo Excel)&quot;)
+    parser.add_argument(&quot;--vista-previa&quot;, action=&quot;store_true&quot;, help=&quot;Solo mostrar qué haría, sin guardar&quot;)
+    args = parser.parse_args()
+
+    if not os.path.isfile(args.archivo):
+        print(f&quot;Error: no se encontro el archivo '{args.archivo}'&quot;)
+        sys.exit(1)
+
+    print(f&quot;Leyendo archivo: {args.archivo}&quot;)
+    datos = leer_archivo(args.archivo, hoja=args.hoja)
+
+    # Normaliza datos a dict {hoja: filas} para unificar el flujo
+    if isinstance(datos, list):
+        datos = {&quot;hoja1&quot;: datos}
+
+    # Preview: solo mostrar, no guardar
+    if args.vista_previa:
+        for nombre, filas in datos.items():
+            limpias = limpiar_filas(filas)
+            print(&quot;&quot;)
+            print(f&quot;--- Vista previa '{nombre}' ---&quot;)
+            for linea in calcular_vista_previa(filas, limpias):
+                print(f&quot;  {linea}&quot;)
+        return
+
+    # Procesar y guardar
+    base = os.path.splitext(args.archivo)[0]
+    for nombre, filas in datos.items():
+        limpias = limpiar_filas(filas)
+        nombre_seguro = re.sub(r&quot;[^\w\- ]&quot;, &quot;&quot;, nombre).strip().replace(&quot; &quot;, &quot;_&quot;)
+        salida = f&quot;{base}_{nombre_seguro}_limpio.{args.salida}&quot; if len(datos) &gt; 1 else f&quot;{base}_limpio.{args.salida}&quot;
+        guardar_filas(salida, limpias)
+        print(f&quot;Archivo limpio guardado en: {salida}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    import sys
+    main()
+</code></pre>
+<hr />
+<h2 id="6-tests-teststest_corepy">6. Tests (<code>tests/test_core.py</code>)</h2>
+<pre><code class="language-python">&quot;&quot;&quot;Tests para core.py&quot;&quot;&quot;
+
+import pytest
+from data_processor.core import normalizar_texto, limpiar_filas, deduplicar, quitar_filas_vacias
+
+
+@pytest.mark.parametrize(&quot;entrada,esperado&quot;, [
+    (&quot;María Gómez&quot;, &quot;maria gomez&quot;),
+    (&quot;MARIA GOMEZ&quot;, &quot;maria gomez&quot;),
+    (&quot;  Pedro   López  &quot;, &quot;pedro lopez&quot;),
+    (&quot;&quot;, &quot;&quot;),
+    (&quot;  &quot;, &quot;&quot;),
+    (123, &quot;123&quot;),
+])
+def test_normalizar_texto(entrada, esperado):
+    assert normalizar_texto(entrada) == esperado
+
+
+def test_quitar_filas_vacias():
+    filas = [[&quot;a&quot;, &quot;b&quot;], [&quot;&quot;, &quot;&quot;], [&quot;x&quot;, &quot;y&quot;], [&quot;&quot;, &quot; &quot;]]
+    assert quitar_filas_vacias(filas) == [[&quot;a&quot;, &quot;b&quot;], [&quot;x&quot;, &quot;y&quot;]]
+
+
+def test_deduplicar_insensible():
+    filas = [
+        [&quot;Nombre&quot;, &quot;Ciudad&quot;],
+        [&quot;María&quot;, &quot;Bogotá&quot;],
+        [&quot;MARIA&quot;, &quot;Bogota&quot;],   # dup
+        [&quot;Pedro&quot;, &quot;Cali&quot;],
+        [&quot;PEDRO&quot;, &quot;CALI&quot;],      # dup
+        [&quot;Ana&quot;, &quot;Medellín&quot;],
+    ]
+    limpias = deduplicar(filas)
+    assert len(limpias) == 3  # cabecera + 2 únicas
+    assert limpias[1][0] == &quot;María&quot;
+    assert limpias[2][0] == &quot;Pedro&quot;
+
+
+def test_limpiar_filas_pipeline():
+    filas = [
+        [&quot;Nombre&quot;, &quot;Ciudad&quot;],
+        [&quot;María&quot;, &quot;Bogotá&quot;],
+        [&quot;&quot;, &quot;&quot;],
+        [&quot;MARIA&quot;, &quot;BOGOTA&quot;],    # dup
+        [&quot;  Pedro  &quot;, &quot;  Cali  &quot;],
+    ]
+    limpias = limpiar_filas(filas)
+    assert len(limpias) == 3  # cabecera + María + Pedro
+    assert limpias[2][0] == &quot;Pedro&quot;
+    assert limpias[2][1] == &quot;Cali&quot;
+</code></pre>
+<hr />
+<h2 id="9-readmemd-del-paquete">9. README.md del paquete</h2>
+<pre><code class="language-markdown"># data-processor v2.0
+
+Limpieza y conversión de CSV/Excel — CLI interactivo, auto-encoding, dedup insensible a mayúsculas/acentos.
+
+## Instalación
+```bash
+pip install -e tools/data-processor
+# o desde la raíz del monorepositorio
+make install-processor
+</code></pre>
+<h2 id="uso">Uso</h2>
+<pre><code class="language-bash"># Modo interactivo (recomendado)
+python -m data_processor
+
+# Directo
+python -m data_processor datos.csv --vista-previa
+python -m data_processor datos.xlsx --salida json
+</code></pre>
+<h2 id="que-hace">Qué hace</h2>
+<ul>
+<li>Auto-detecta encoding (utf-8, latin-1, cp1252)</li>
+<li>Quita filas vacías</li>
+<li>Elimina duplicados (insensible a mayúsculas/acentos)</li>
+<li>Normaliza espacios</li>
+<li>Exporta: xlsx (números reales), csv (;), json</li>
+</ul>
+<h2 id="tests">Tests</h2>
+<pre><code class="language-bash">make test-processor
+</code></pre>
+<pre><code>
+---
+
+## 10. Instalar y probar
+
+```bash
+# Desde la raíz del monorepositorio
+make install-processor
+
+# Prueba
+python -m data_processor examples/ejemplo.csv --vista-previa
+python -m data_processor examples/ejemplo.xlsx --salida json
+</code></pre>
+<hr />
+<h2 id="proximos-pasos">Próximos pasos</h2>
+<ol>
+<li>Lea <code>docs/tutorials/03-pdf-a-excel.md</code> — construye pdf-to-excel</li>
+<li>Lea <code>docs/tutorials/04-convertidor-archivos.md</code> — construye file-converter</li>
+<li>Lea <code>docs/tutorials/04-de-codigo-a-servicio.md</code> — de código a servicio vendible</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Diego Alejandro Saenz Falcon
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
