@@ -1,14 +1,13 @@
-# Automatizacion de Datos: Herramientas.
+﻿# Automatizacion de Datos: Herramientas
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)]
-[![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-brightgreen.svg)](https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos./)
+[![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-brightgreen.svg)](https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos/)
 [![CI/CD](https://img.shields.io/badge/CI-GitHub%20Actions-blue.svg)](https://github.com/features/actions)
 [![Autor](https://img.shields.io/badge/Autor-Diego%20Alejandro%20Saenz%20Falcon-blue.svg)](https://github.com/DiegoAlejandroSaenzFalcon)
 
 **Herramientas Profesionales de datos para automatización, limpieza y conversión.**
-Código didáctico, testeado, documentado y listo para producción. profesional de herramientas de datos para automatización, limpieza y conversión.**
 Código didáctico, testeado, documentado y listo para producción.
 
 ---
