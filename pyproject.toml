@@ -1,4 +1,4 @@
-[build-system]
+﻿[build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
@@ -201,8 +201,6 @@ exclude_lines = [
 ]
 precision = 2
 
-[tool.hatch.build.targets.wheel]
-packages = []
 
 [tool.hatch.envs.docs]
 dependencies = [
