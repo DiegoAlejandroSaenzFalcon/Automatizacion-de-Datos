@@ -1,23 +1,32 @@
-﻿site_name: "Automatizacion de Datos: Herramientas"
+site_name: "Automatización de Datos: Documentación"
 site_url: "https://diegoalejandrosaenzfalcon.github.io/Automatizacion-de-Datos/"
-site_author: "Diego Alejandro Saenz Falcon"
-copyright: "Copyright &copy; 2024 Diego Alejandro Saenz Falcon"
+site_author: "Diego Alejandro Sáenz Falcón"
 
 repo_url: "https://github.com/DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos"
 repo_name: "DiegoAlejandroSaenzFalcon/Automatizacion-de-Datos"
 
 theme:
   name: material
-  palette:
-    - scheme: default
-      primary: indigo
-      accent: amber
-    - scheme: slate
-      primary: indigo
-      accent: amber
+  language: es
 
 nav:
   - Inicio: index.md
-
-plugins:
-  - search
+  - Primeros pasos: getting-started.md
+  - Tutoriales:
+      - Desde cero: tutorials/01-desde-cero.md
+      - Procesador de datos: tutorials/02-procesador-datos.md
+      - PDF a Excel: tutorials/03-pdf-a-excel.md
+      - Convertidor de archivos: tutorials/04-convertidor-archivos.md
+      - De código a servicio: tutorials/04-de-codigo-a-servicio.md
+  - Herramientas:
+      - Procesador de datos: tools/data-processor.md
+      - PDF a Excel: tools/pdf-to-excel.md
+      - Convertidor de archivos: tools/file-converter.md
+      - Hoja de ruta: tools/roadmap.md
+  - Arquitectura:
+      - Visión general: architecture/overview.md
+      - Decisiones: architecture/decisions/index.md
+  - Negocio:
+      - Precios: business/pricing.md
+      - Búsqueda de clientes: business/finding-clients.md
+      - Entrega y soporte: business/delivery.md

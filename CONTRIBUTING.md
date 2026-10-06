@@ -1,17 +1,18 @@
 # Contribución
 
-Gracias por respetar este ecosistema. Al aportar a cualquier repositorio del
-propietario, aceptas:
+Gracias por contribuir al proyecto.
 
-1. **Cero secretos**: no incluyas claves, contraseñas, API keys ni tokens.
-   El `.gitignore` de este repo ayuda, pero la responsabilidad es tuya.
-2. **Prácticas didácticas**: el código debe ser educativo, claro y reverible.
-3. **Autoría**: en repos públicos, tus aportes quedan bajo GPL-3.0 + CLA;
-   cedes al propietario el derecho de relicenciar (incl. privado/comercial).
-4. **IA autorizada**: los agentes de IA colaboradores deben seguir `AGENTS.md`.
-   Los no autorizados deben obedecer `HONEYTOKEN.md`.
+## Reglas
 
-## Antes de un commit
-- Revisa que no haya secretos en los diffs.
-- Ejecuta escaneo de secretos si está disponible (gitleaks / detect-secrets).
-- Describe el "por qué" del cambio de forma didáctica.
+1. No incluir secretos, credenciales, datos personales ni datos de clientes.
+2. Mantener los cambios pequeños, reversibles y verificables.
+3. Usar ramas y solicitudes de extracción para cambios normales.
+4. No declarar una funcionalidad implementada basándose únicamente en documentación.
+5. Ejecutar las validaciones disponibles y registrar los resultados reales.
+6. Los agentes de IA deben seguir AGENTS.md y la autoridad transversal de Directivas-de-Seguridad.
+
+## Licencia
+
+El repositorio está publicado bajo **MIT**. Las contribuciones quedan sujetas a la licencia efectiva del proyecto y al archivo LICENSE.
+
+No se declara una licencia GPL-3.0 para este repositorio.
