@@ -31,4 +31,8 @@ La auditoría del árbol main confirma que el repositorio contiene documentació
 
 ## Estado de cierre
 
-La auditoría solo se considerará cerrada después de verificar y fusionar la corrección. Las futuras implementaciones de código constituyen trabajos separados.
+**VERIFIED / EVIDENCED / DOCUMENTED — auditoría de repositorio cerrada.**
+
+La segunda pasada de autoauditoría corrigió discrepancias documentales adicionales y fue fusionada en `main` mediante PR #4. El commit actual de cierre es `8a3df8a2897664b24c931bf90a872dc800ad6a1d`.
+
+Las futuras implementaciones de código constituyen trabajos separados. La ejecución runtime de CI no se considera observada solo por la existencia del workflow.
